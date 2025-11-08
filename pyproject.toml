@@ -13,9 +13,6 @@ authors = [
 license = "MIT"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -25,7 +22,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 keywords = ["streamlit", "cytoscape", "graph", "visualization", "network"]
-requires-python = ">=3.7"
+requires-python = ">=3.10"
 dependencies = [
     "streamlit>=1.0.0",
 ]
@@ -51,7 +48,7 @@ st_cytoscape = ["frontend/build/**/*"]
 
 [tool.black]
 line-length = 88
-target-version = ['py37', 'py38', 'py39', 'py310', 'py311', 'py312']
+target-version = ['py310', 'py311', 'py312']
 include = '\.pyi?$'
 extend-exclude = '''
 /(
@@ -69,7 +66,7 @@ extend-exclude = '''
 '''
 
 [tool.mypy]
-python_version = "3.7"
+python_version = "3.10"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = false
