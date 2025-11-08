@@ -34,7 +34,9 @@ Issues = "https://github.com/natalie-23-gill/st-cytoscape/issues"
 
 [project.optional-dependencies]
 dev = [
-    "pytest",
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pytest-mock>=3.10",
     "black",
     "flake8",
     "mypy",
@@ -91,6 +93,10 @@ python_functions = ["test_*"]
 addopts = [
     "-v",
     "--strict-markers",
+    "--cov=st_cytoscape",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-fail-under=80",
 ]
 
 [tool.coverage.run]
