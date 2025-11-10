@@ -1,81 +1,46 @@
 # Contributing to st-cytoscape
 
-Thank you for your interest in contributing to st-cytoscape!
+## Setup
 
-## Development Setup
-
-1. Clone the repository:
 ```bash
 git clone https://github.com/natalie-23-gill/st-cytoscape.git
 cd st-cytoscape
-```
-
-2. Install Python dependencies:
-```bash
 pip install -e .
-pip install -r requirements-dev.txt
+cd frontend && npm install && npm start
 ```
 
-3. Install frontend dependencies:
-```bash
-cd frontend
-npm install
-```
-
-4. Start the frontend development server:
-```bash
-npm start
-```
-
-5. In another terminal, run the example app:
+In another terminal:
 ```bash
 streamlit run examples/comprehensive_demo.py
 ```
 
-## Making Changes
+## Guidelines
 
-### Python Code
+**Python:**
+- Follow PEP 8
+- Add type hints
+- Update docstrings
 
-- Follow PEP 8 style guidelines
-- Add type hints where appropriate
-- Update docstrings for any API changes
-- Run tests before submitting
-
-### Frontend Code
-
-- Use TypeScript for type safety
+**Frontend:**
+- Use TypeScript
 - Follow React best practices
-- Test across different browsers
 
-### Documentation
-
+**Documentation:**
 - Update README.md for new features
 - Add examples for significant changes
-- Document API changes
 
-## Submitting Changes
+## Workflow
 
-1. Create a new branch for your feature/fix
-2. Make your changes
+1. Create a feature branch
+2. Make changes
 3. Test thoroughly
 4. Update documentation
-5. Submit a pull request
+5. Submit pull request
 
-## Issues Addressed
+## Focus
 
-st-cytoscape was created to address specific issues from st-link-analysis:
-
-- **PR #62**: Custom styling support
-- **Issue #44**: Coordinate positioning
-- **Issue #35**: Multi-tab resizing
-- **Issue #63**: Customizable highlights
-
-When contributing, please keep this focus on flexibility and customization.
-
-## Code of Conduct
-
-Be respectful and constructive in all interactions.
+This project prioritizes flexibility and customization. Contributions should align with addressing community needs from st-link-analysis.
 
 ## Questions?
 
-Open an issue for questions or discussions!
+Open an issue for discussion.
