@@ -4,7 +4,7 @@ Main Streamlit component for st-cytoscape
 
 import streamlit.components.v1 as components
 import os
-from typing import List, Dict, Any, Optional, Union
+from typing import List, Dict, Any, Optional, Union, cast
 from .styles import NodeStyle, EdgeStyle, HighlightStyle
 from .events import Event
 
@@ -115,7 +115,7 @@ def st_cytoscape(
         default=None,
     )
 
-    return component_value
+    return cast(Optional[Dict[str, Any]], component_value)
 
 
 # Helper functions for creating elements
