@@ -17,13 +17,9 @@ elements = [
 ]
 
 # Define styles
-node_styles = [
-    NodeStyle("person", "#3498db", "label", "person", size=50)
-]
+node_styles = [NodeStyle("person", "#3498db", "label", "person", size=50)]
 
-edge_styles = [
-    EdgeStyle("friends", "#95a5a6", "label", directed=False, width=3)
-]
+edge_styles = [EdgeStyle("friends", "#95a5a6", "label", directed=False, width=3)]
 
 # Render the graph
 event = st_cytoscape(
@@ -32,11 +28,11 @@ event = st_cytoscape(
     edge_styles=edge_styles,
     layout="cose",
     height=400,
-    key="simple_graph"
+    key="simple_graph",
 )
 
 # Display events
 if event:
     st.write(f"Event type: {event.get('type')}")
-    if event.get('target'):
+    if event.get("target"):
         st.write(f"Target: {event['target']}")
