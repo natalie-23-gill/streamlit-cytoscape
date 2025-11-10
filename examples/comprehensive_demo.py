@@ -22,16 +22,20 @@ st.set_page_config(page_title="st-cytoscape Demo", layout="wide")
 
 st.title("🔗 st-cytoscape: Flexible Graph Visualization")
 
-st.markdown("""
+st.markdown(
+    """
 This component addresses key issues from st-link-analysis:
 - ✅ **Custom Styling** (PR #62): Built-in support for custom cytoscape.js styles
 - ✅ **Coordinate Positioning** (Issue #44): Position nodes with x/y coordinates
 - ✅ **Custom Highlights** (Issue #63): Fully customizable highlight styles
 - ✅ **Auto-Resize** (Issue #35): Works correctly in multi-tab scenarios
-""")
+"""
+)
 
 # Create tabs to demonstrate multi-tab support (Issue #35)
-tab1, tab2, tab3 = st.tabs(["📊 Network Graph", "🎨 Custom Styling", "📍 Positioned Layout"])
+tab1, tab2, tab3 = st.tabs(
+    ["📊 Network Graph", "🎨 Custom Styling", "📍 Positioned Layout"]
+)
 
 with tab1:
     st.header("Interactive Network Graph")
@@ -223,7 +227,8 @@ with st.sidebar:
     st.header("Features")
 
     st.subheader("✨ New in st-cytoscape")
-    st.markdown("""
+    st.markdown(
+        """
     **1. Custom Styling (PR #62)**
     ```python
     NodeStyle(
@@ -251,14 +256,17 @@ with st.sidebar:
     **4. Auto-Resize (Issue #35)**
     - Works correctly in multi-tab scenarios
     - Automatically adjusts to container size
-    """)
+    """
+    )
 
     st.subheader("📚 Supported Layouts")
-    st.markdown("""
+    st.markdown(
+        """
     - `cose` - Physics-based
     - `grid` - Grid layout
     - `circle` - Circular layout
     - `concentric` - Concentric circles
     - `breadthfirst` - Tree layout
     - `preset` - Use provided positions
-    """)
+    """
+    )

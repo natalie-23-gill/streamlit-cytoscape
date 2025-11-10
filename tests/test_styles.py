@@ -21,11 +21,7 @@ def test_node_style_basic():
 
 def test_node_style_with_position():
     """Test NodeStyle with coordinate positioning (Issue #44)"""
-    style = NodeStyle(
-        "person",
-        "#3498db",
-        position={"x": 100, "y": 200}
-    )
+    style = NodeStyle("person", "#3498db", position={"x": 100, "y": 200})
 
     style_dict = style.to_dict()
     assert style_dict["position"] == {"x": 100, "y": 200}
@@ -108,11 +104,7 @@ class TestNodeStyleEdgeCases:
     def test_node_style_to_dict(self):
         """Test NodeStyle to_dict method includes all fields"""
         style = NodeStyle(
-            "person",
-            color="#3498db",
-            caption="name",
-            icon="user",
-            size=60
+            "person", color="#3498db", caption="name", icon="user", size=60
         )
 
         result = style.to_dict()
@@ -162,11 +154,7 @@ class TestEdgeStyleEdgeCases:
     def test_edge_style_to_dict(self):
         """Test EdgeStyle to_dict method includes all fields"""
         style = EdgeStyle(
-            "knows",
-            color="#95a5a6",
-            caption="relationship",
-            directed=False,
-            width=2
+            "knows", color="#95a5a6", caption="relationship", directed=False, width=2
         )
 
         result = style.to_dict()
@@ -194,7 +182,7 @@ class TestEdgeStyleEdgeCases:
         custom = {
             "curve-style": "bezier",
             "control-point-step-size": 40,
-            "arrow-scale": 1.5
+            "arrow-scale": 1.5,
         }
         style = EdgeStyle("complex", custom_styles=custom)
 
@@ -222,7 +210,7 @@ class TestHighlightStyleEdgeCases:
             edge_color="#00FF00",
             node_border_color="#0000FF",
             node_border_width=5,
-            edge_width=3
+            edge_width=3,
         )
 
         result = style.to_dict()
@@ -235,10 +223,7 @@ class TestHighlightStyleEdgeCases:
 
     def test_highlight_style_partial(self):
         """Test HighlightStyle with only some parameters"""
-        style = HighlightStyle(
-            node_color="#FF0000",
-            edge_width=2
-        )
+        style = HighlightStyle(node_color="#FF0000", edge_width=2)
 
         assert style.node_color == "#FF0000"
         assert style.edge_width == 2
@@ -247,10 +232,7 @@ class TestHighlightStyleEdgeCases:
 
     def test_highlight_style_zero_width(self):
         """Test HighlightStyle with zero width values"""
-        style = HighlightStyle(
-            node_border_width=0,
-            edge_width=0
-        )
+        style = HighlightStyle(node_border_width=0, edge_width=0)
 
         assert style.node_border_width == 0
         assert style.edge_width == 0

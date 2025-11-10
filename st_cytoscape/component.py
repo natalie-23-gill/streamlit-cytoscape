@@ -125,7 +125,7 @@ def create_node(
     node_type: str,
     x: Optional[float] = None,
     y: Optional[float] = None,
-    **additional_data
+    **additional_data,
 ) -> Dict[str, Any]:
     """
     Helper function to create a node element
@@ -141,12 +141,7 @@ def create_node(
     Returns:
         Node element dictionary
     """
-    node_data = {
-        "id": id,
-        "label": label,
-        "type": node_type,
-        **additional_data
-    }
+    node_data = {"id": id, "label": label, "type": node_type, **additional_data}
 
     node = {"data": node_data}
 
@@ -163,7 +158,7 @@ def create_edge(
     target: str,
     edge_type: str,
     label: Optional[str] = None,
-    **additional_data
+    **additional_data,
 ) -> Dict[str, Any]:
     """
     Helper function to create an edge element
@@ -184,7 +179,7 @@ def create_edge(
         "source": source,
         "target": target,
         "type": edge_type,
-        **additional_data
+        **additional_data,
     }
 
     if label:

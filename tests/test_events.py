@@ -52,10 +52,7 @@ class TestEvent:
     def test_event_init_with_selected_nodes(self):
         """Test Event initialization with selected nodes"""
         selected = ["n1", "n2", "n3"]
-        event = Event(
-            event_type="selection_change",
-            selected_nodes=selected
-        )
+        event = Event(event_type="selection_change", selected_nodes=selected)
 
         assert event.type == "selection_change"
         assert event.selected_nodes == selected
@@ -64,10 +61,7 @@ class TestEvent:
     def test_event_init_with_selected_edges(self):
         """Test Event initialization with selected edges"""
         selected = ["e1", "e2"]
-        event = Event(
-            event_type="selection_change",
-            selected_edges=selected
-        )
+        event = Event(event_type="selection_change", selected_edges=selected)
 
         assert event.type == "selection_change"
         assert event.selected_nodes == []
@@ -80,7 +74,7 @@ class TestEvent:
             event_type="edge_click",
             target=target_data,
             selected_nodes=["n1", "n2"],
-            selected_edges=["e1"]
+            selected_edges=["e1"],
         )
 
         assert event.type == "edge_click"
@@ -109,10 +103,7 @@ class TestEvent:
 
     def test_event_from_dict_partial(self):
         """Test creating Event from partial dictionary"""
-        data = {
-            "type": "background_click",
-            "selected_nodes": []
-        }
+        data = {"type": "background_click", "selected_nodes": []}
         event = Event.from_dict(data)
 
         assert event.type == "background_click"
@@ -128,7 +119,7 @@ class TestEvent:
             event_type="node_hover",
             target={"id": "n5", "label": "Hovered"},
             selected_nodes=["n5"],
-            selected_edges=[]
+            selected_edges=[],
         )
 
         result = event.to_dict()
@@ -137,7 +128,7 @@ class TestEvent:
             "type": "node_hover",
             "target": {"id": "n5", "label": "Hovered"},
             "selected_nodes": ["n5"],
-            "selected_edges": []
+            "selected_edges": [],
         }
 
     def test_event_to_dict_defaults(self):
@@ -150,7 +141,7 @@ class TestEvent:
             "type": "background_click",
             "target": {},
             "selected_nodes": [],
-            "selected_edges": []
+            "selected_edges": [],
         }
 
     def test_event_roundtrip(self, sample_event_data):
@@ -175,7 +166,7 @@ class TestEvent:
         event = Event(
             event_type="selection_change",
             selected_nodes=["n1", "n2", "n3", "n4"],
-            selected_edges=["e1", "e2", "e3"]
+            selected_edges=["e1", "e2", "e3"],
         )
 
         assert len(event.selected_nodes) == 4

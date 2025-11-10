@@ -30,7 +30,7 @@ class NodeStyle:
         icon: Optional[str] = None,
         size: int = 40,
         position: Optional[Dict[str, float]] = None,
-        custom_styles: Optional[Dict[str, Any]] = None
+        custom_styles: Optional[Dict[str, Any]] = None,
     ):
         self.type = type
         self.color = color
@@ -75,7 +75,7 @@ class EdgeStyle:
         caption: Optional[str] = None,
         directed: bool = False,
         width: int = 2,
-        custom_styles: Optional[Dict[str, Any]] = None
+        custom_styles: Optional[Dict[str, Any]] = None,
     ):
         self.type = type
         self.color = color
@@ -118,7 +118,7 @@ class HighlightStyle:
         node_border_color: str = "#FFD700",
         edge_color: Optional[str] = None,
         edge_width: Optional[int] = None,
-        custom_styles: Optional[Dict[str, Any]] = None
+        custom_styles: Optional[Dict[str, Any]] = None,
     ):
         self.node_color = node_color
         self.node_border_width = node_border_width

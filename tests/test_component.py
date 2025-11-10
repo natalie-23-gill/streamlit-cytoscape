@@ -98,7 +98,7 @@ class TestCreateNodeEdgeCases:
             "person",
             metadata={"key": "value"},
             tags=["tag1", "tag2"],
-            count=42
+            count=42,
         )
 
         assert node["data"]["metadata"] == {"key": "value"}
@@ -133,13 +133,7 @@ class TestCreateEdgeEdgeCases:
     def test_create_edge_with_label_and_additional_data(self):
         """Test edge creation with both label and additional data"""
         edge = create_edge(
-            "e1",
-            "n1",
-            "n2",
-            "knows",
-            label="friend",
-            weight=0.9,
-            since=2020
+            "e1", "n1", "n2", "knows", label="friend", weight=0.9, since=2020
         )
 
         assert edge["data"]["label"] == "friend"
