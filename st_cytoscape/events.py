@@ -8,6 +8,7 @@ from enum import Enum
 
 class EventType(Enum):
     """Types of events that can occur in the graph"""
+
     NODE_CLICK = "node_click"
     EDGE_CLICK = "edge_click"
     NODE_DOUBLE_CLICK = "node_double_click"
@@ -33,7 +34,7 @@ class Event:
         event_type: str,
         target: Optional[Dict[str, Any]] = None,
         selected_nodes: Optional[List[str]] = None,
-        selected_edges: Optional[List[str]] = None
+        selected_edges: Optional[List[str]] = None,
     ):
         self.type = event_type
         self.target = target or {}

@@ -21,11 +21,7 @@ def test_node_style_basic():
 
 def test_node_style_with_position():
     """Test NodeStyle with coordinate positioning (Issue #44)"""
-    style = NodeStyle(
-        "person",
-        "#3498db",
-        position={"x": 100, "y": 200}
-    )
+    style = NodeStyle("person", "#3498db", position={"x": 100, "y": 200})
 
     style_dict = style.to_dict()
     assert style_dict["position"] == {"x": 100, "y": 200}
