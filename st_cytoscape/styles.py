@@ -57,7 +57,7 @@ class NodeStyle:
                         f"Use st_cytoscape.icons.search_icons() to find valid icons, "
                         f"or set validate_icon=False to disable this warning.",
                         UserWarning,
-                        stacklevel=2
+                        stacklevel=2,
                     )
             except ImportError:
                 # If icons module can't be imported, skip validation silently
@@ -67,7 +67,7 @@ class NodeStyle:
                 warnings.warn(
                     f"Could not validate icon '{icon}': {e}. Icon will be used as-is.",
                     UserWarning,
-                    stacklevel=2
+                    stacklevel=2,
                 )
 
         self.icon = icon

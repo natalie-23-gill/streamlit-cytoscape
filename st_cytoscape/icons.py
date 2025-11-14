@@ -45,7 +45,7 @@ class MaterialIconsAPI:
         """
         try:
             with urllib.request.urlopen(self.METADATA_URL) as response:
-                data = response.read().decode('utf-8')
+                data = response.read().decode("utf-8")
 
                 # Remove the XSSI protection prefix )]}' from the response
                 if data.startswith(")]}'\n"):
@@ -93,11 +93,8 @@ class MaterialIconsAPI:
             icon_names: List of icon names to cache
         """
         try:
-            cache_data = {
-                "version": "1.0",
-                "icons": icon_names
-            }
-            with open(self.CACHE_FILE, 'w') as f:
+            cache_data = {"version": "1.0", "icons": icon_names}
+            with open(self.CACHE_FILE, "w") as f:
                 json.dump(cache_data, f, indent=2)
         except Exception as e:
             # Cache write failure is not critical
@@ -110,7 +107,7 @@ class MaterialIconsAPI:
         """
         if self.CACHE_FILE.exists():
             try:
-                with open(self.CACHE_FILE, 'r') as f:
+                with open(self.CACHE_FILE, "r") as f:
                     cache_data = json.load(f)
                     self._icons_cache = cache_data.get("icons", [])
             except Exception as e:
@@ -169,12 +166,41 @@ class MaterialIconsAPI:
             List of common icon names
         """
         return [
-            "person", "folder", "hub", "location_on", "home", "settings",
-            "favorite", "search", "info", "help", "check_circle", "star",
-            "delete", "add", "remove", "edit", "save", "cloud", "download",
-            "upload", "attach_file", "email", "phone", "work", "school",
-            "shopping_cart", "calendar_today", "schedule", "lock", "visibility",
-            "notifications", "account_circle", "dashboard", "explore", "language"
+            "person",
+            "folder",
+            "hub",
+            "location_on",
+            "home",
+            "settings",
+            "favorite",
+            "search",
+            "info",
+            "help",
+            "check_circle",
+            "star",
+            "delete",
+            "add",
+            "remove",
+            "edit",
+            "save",
+            "cloud",
+            "download",
+            "upload",
+            "attach_file",
+            "email",
+            "phone",
+            "work",
+            "school",
+            "shopping_cart",
+            "calendar_today",
+            "schedule",
+            "lock",
+            "visibility",
+            "notifications",
+            "account_circle",
+            "dashboard",
+            "explore",
+            "language",
         ]
 
     def is_valid_icon(self, icon_name: str, force_refresh: bool = False) -> bool:

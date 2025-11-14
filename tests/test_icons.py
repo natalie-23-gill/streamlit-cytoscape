@@ -143,15 +143,12 @@ class TestNodeStyleIconValidation:
 
         with warnings.catch_warnings(record=True) as w:
             warnings.simplefilter("always")
-            style = NodeStyle(
-                "test",
-                icon="custom_icon",
-                validate_icon=False
-            )
+            style = NodeStyle("test", icon="custom_icon", validate_icon=False)
             assert style.icon == "custom_icon"
             # Should not produce any warnings
             validation_warnings = [
-                warning for warning in w
+                warning
+                for warning in w
                 if "valid Material Icon" in str(warning.message)
             ]
             assert len(validation_warnings) == 0

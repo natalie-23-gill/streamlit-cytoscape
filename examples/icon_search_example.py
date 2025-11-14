@@ -13,10 +13,12 @@ from st_cytoscape import st_cytoscape, NodeStyle, icons
 st.set_page_config(page_title="Material Icons API Demo", layout="wide")
 
 st.title("Material Icons API Demo")
-st.markdown("""
+st.markdown(
+    """
 This demo shows how st-cytoscape integrates with the Google Material Icons API
 to provide icon validation and search capabilities.
-""")
+"""
+)
 
 # Create two columns for the demo
 col1, col2 = st.columns([1, 2])
@@ -28,7 +30,7 @@ with col1:
     search_query = st.text_input(
         "Search for icons",
         placeholder="e.g., person, home, settings",
-        help="Search for Material Icons by name"
+        help="Search for Material Icons by name",
     )
 
     if search_query:
@@ -52,7 +54,7 @@ with col1:
     icon_to_validate = st.text_input(
         "Validate an icon",
         placeholder="e.g., person",
-        help="Check if an icon name is valid"
+        help="Check if an icon name is valid",
     )
 
     if icon_to_validate:
@@ -75,7 +77,9 @@ with col1:
         with st.spinner("Fetching latest icons from Google..."):
             try:
                 refreshed_icons = icons.refresh_icons()
-                st.success(f"Successfully loaded {len(refreshed_icons)} icons from Google Material Icons API")
+                st.success(
+                    f"Successfully loaded {len(refreshed_icons)} icons from Google Material Icons API"
+                )
             except Exception as e:
                 st.error(f"Failed to refresh icons: {e}")
 
@@ -103,7 +107,6 @@ with col2:
         {"data": {"id": "p2", "label": "Bob", "type": "person"}},
         {"data": {"id": "proj1", "label": "Project X", "type": "project"}},
         {"data": {"id": "team1", "label": "Dev Team", "type": "team"}},
-
         # Edges
         {"data": {"id": "e1", "source": "p1", "target": "proj1", "type": "works_on"}},
         {"data": {"id": "e2", "source": "p2", "target": "proj1", "type": "works_on"}},
@@ -127,16 +130,19 @@ with col2:
         height=400,
     )
 
-    st.markdown("""
+    st.markdown(
+        """
     **Note:** If you enter an invalid icon name, you'll see a warning in the console.
     The icon validation feature helps catch typos and ensures you're using valid Material Icons.
-    """)
+    """
+    )
 
 # Sidebar with additional information
 with st.sidebar:
     st.subheader("About Material Icons API")
 
-    st.markdown("""
+    st.markdown(
+        """
     The Material Icons API integration provides:
 
     - **Automatic validation**: Icon names are validated against Google's Material Icons
@@ -171,7 +177,8 @@ with st.sidebar:
               icon="custom_icon",
               validate_icon=False)
     ```
-    """)
+    """
+    )
 
     st.divider()
 
