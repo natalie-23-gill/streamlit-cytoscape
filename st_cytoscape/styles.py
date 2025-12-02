@@ -3,6 +3,7 @@ Style classes for nodes, edges, and highlights in st-cytoscape
 """
 
 from typing import Optional, Dict, Any, Union
+import warnings
 
 
 class NodeStyle:
@@ -16,10 +17,11 @@ class NodeStyle:
         type: Node type identifier
         color: Node color (hex or color name)
         caption: Property to display as node label
-        icon: Material icon name
+        icon: Material icon name (validated against Google Material Icons API)
         size: Node size in pixels
         position: Optional dict with 'x' and 'y' coordinates for fixed positioning
         custom_styles: Additional cytoscape.js style properties
+        validate_icon: Whether to validate icon name against Material Icons API (default: True)
     """
 
     def __init__(
@@ -31,14 +33,44 @@ class NodeStyle:
         size: int = 40,
         position: Optional[Dict[str, float]] = None,
         custom_styles: Optional[Dict[str, Any]] = None,
+        validate_icon: bool = True,
     ):
         self.type = type
         self.color = color
         self.caption = caption
-        self.icon = icon
         self.size = size
         self.position = position
         self.custom_styles = custom_styles or {}
+
+        # Validate icon if provided and validation is enabled
+        if icon and validate_icon:
+            try:
+                # Try relative import first, fall back to absolute
+                try:
+                    from .icons import is_valid_icon
+                except (ImportError, ValueError):
+                    from st_cytoscape.icons import is_valid_icon
+
+                if not is_valid_icon(icon):
+                    warnings.warn(
+                        f"Icon '{icon}' may not be a valid Material Icon. "
+                        f"Use st_cytoscape.icons.search_icons() to find valid icons, "
+                        f"or set validate_icon=False to disable this warning.",
+                        UserWarning,
+                        stacklevel=2,
+                    )
+            except ImportError:
+                # If icons module can't be imported, skip validation silently
+                pass
+            except Exception as e:
+                # If validation fails (e.g., network error), just warn but don't fail
+                warnings.warn(
+                    f"Could not validate icon '{icon}': {e}. Icon will be used as-is.",
+                    UserWarning,
+                    stacklevel=2,
+                )
+
+        self.icon = icon
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for serialization"""
