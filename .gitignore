@@ -55,7 +55,7 @@ htmlcov/
 
 # dev files
 PROJECT_SUMMARY.md
-
+local_only/
 # Claude files
 CLAUDE.md
 .claude

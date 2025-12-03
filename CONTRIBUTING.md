@@ -1,46 +1,81 @@
-# Contributing to st-cytoscape
+# Contributing
 
-## Setup
+Contributions are welcome, and they are greatly appreciated! Every little bit
+helps, and credit will always be given.
 
-```bash
-git clone https://github.com/natalie-23-gill/st-cytoscape.git
-cd st-cytoscape
-pip install -e .
-cd frontend && npm install && npm start
-```
+## Types of Contributions
 
-In another terminal:
-```bash
-streamlit run examples/comprehensive_demo.py
-```
+### Report Bugs
 
-## Guidelines
+If you are reporting a bug, please include:
 
-**Python:**
-- Follow PEP 8
-- Add type hints
-- Update docstrings
+* Your operating system name and version.
+* Any details about your local setup that might be helpful in troubleshooting.
+* Detailed steps to reproduce the bug.
 
-**Frontend:**
-- Use TypeScript
-- Follow React best practices
+### Fix Bugs
 
-**Documentation:**
-- Update README.md for new features
-- Add examples for significant changes
+Look through the GitHub issues for bugs. Anything tagged with "bug" and "help
+wanted" is open to whoever wants to implement it.
 
-## Workflow
+### Implement Features
 
-1. Create a feature branch
-2. Make changes
-3. Test thoroughly
-4. Update documentation
-5. Submit pull request
+Look through the GitHub issues for features. Anything tagged with "enhancement"
+and "help wanted" is open to whoever wants to implement it.
 
-## Focus
+### Write Documentation
 
-This project prioritizes flexibility and customization. Contributions should align with addressing community needs from st-link-analysis.
+You can never have enough documentation! Please feel free to contribute to any
+part of the documentation, such as the official docs, docstrings, or even
+on the web in blog posts, articles, and such.
 
-## Questions?
+### Submit Feedback
 
-Open an issue for discussion.
+If you are proposing a feature:
+
+* Explain in detail how it would work.
+* Keep the scope as narrow as possible, to make it easier to implement.
+* Remember that this is a volunteer-driven project, and that contributions
+  are welcome :)
+
+## Get Started!
+
+Ready to contribute? Here's how to set up `st_cytoscape` for local development.
+
+1. Download a copy of `st_cytoscape` locally.
+
+2. Create and activate a conda environment for `st_cytoscape`:
+
+    ```console
+    $ conda create -n st_cytoscape python=3.10
+    $ conda activate st_cytoscape
+    ```
+
+3. Install `st_cytoscape` using `poetry`:
+
+    ```console
+    $ poetry install
+    ```
+
+4. Use `git` (or similar) to create a branch for local development and make your changes:
+
+    ```console
+    $ git checkout -b name-of-your-bugfix-or-feature
+    ```
+
+5. When you're done making changes, check that your changes conform to any code formatting requirements and pass any tests.
+
+6. Commit your changes and open a pull request.
+
+## Pull Request Guidelines
+
+Before you submit a pull request, check that it meets these guidelines:
+
+1. The pull request should include additional tests if appropriate.
+2. If the pull request adds functionality, the docs should be updated.
+3. The pull request should work for all currently supported operating systems and versions of Python.
+
+## Code of Conduct
+
+Please note that the `st_cytoscape` project is released with a
+Code of Conduct. By contributing to this project you agree to abide by its terms.
