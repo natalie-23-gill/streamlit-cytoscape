@@ -52,3 +52,10 @@ htmlcov/
 
 # Streamlit
 .streamlit/
+
+# dev files
+PROJECT_SUMMARY.md
+
+# Claude files
+CLAUDE.md
+.claude
