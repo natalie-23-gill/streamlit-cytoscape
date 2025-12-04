@@ -5,10 +5,19 @@ description = "A flexible, customizable, Streamlit component for interactive gra
 authors = ["Natalie Gill"]
 license = "MIT"
 readme = "README.md"
+packages = [{include = "st_cytoscape", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+streamlit = ">=0.63"
 
+[tool.poetry.group.dev.dependencies]
+black = "^24.0"
+flake8 = "^7.0"
+mypy = "^1.0"
+pytest = "^8.0"
+pytest-playwright = "^0.5"
+pytest-rerunfailures = "^14.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
