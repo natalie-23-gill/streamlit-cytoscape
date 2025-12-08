@@ -13,7 +13,7 @@ else:
 st.markdown("# Events Listeners")
 st.error(
     """
-    With node actions feature added, the use case for this feature is no longer clear and may be removed in the future. If you have a use case for it please share via [Github](https://github.com/AlrasheedA/st-link-analysis).
+    With node actions feature added, the use case for this feature is no longer clear and may be removed in the future. If you have a use case for it please share via [Github](https://github.com/natalie-23-gill/st-cytoscape).
     """,
     icon="🚨",
 )

@@ -1,6 +1,7 @@
 # st-cytoscape
 
-A flexible, customizable Streamlit component for interactive graph visualization using Cytoscape.js.
+A flexible, customizable Streamlit component for interactive graph visualization using Cytoscape.js. This project is a fork of [st-link-analysis](https://github.com/AlrasheedA/st-link-analysis) by [@AlrasheedA](https://github.com/AlrasheedA), who developed the bulk of the original component. This fork extends the original with additional customization options and bug fixes.
+
 
 ## Overview
 
