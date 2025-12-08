@@ -42,6 +42,18 @@ function onRender(event) {
         initNodeActions(args["nodeActions"]);
         initToolbar();
         initViewbar();
+
+        // ResizeObserver for multi-tab support - fit graph when container becomes visible
+        const resizeObserver = new ResizeObserver(
+            debounce((entries) => {
+                const entry = entries[0];
+                if (entry && entry.contentRect.width > 0 && entry.contentRect.height > 0) {
+                    cy.resize();
+                    cy.fit();
+                }
+            }, RENDER_DEBOUNCE)
+        );
+        resizeObserver.observe(document.getElementById("cy"));
     }
     // Elements dynamic update
     if (newElements != elements) {
