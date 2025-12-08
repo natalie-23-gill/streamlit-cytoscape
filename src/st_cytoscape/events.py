@@ -20,15 +20,16 @@ class Event:
         Parameters
         ----------
         name: str
-            User defined name which will be included in the return value to help
-            identify the event
+            User defined name which will be included in the
+            return value to help identify the event
         event_type: str
-            A space separated list of cytoscape.js events names to listen to
-            (e.g."click tap"). For a full list of event types refer to
-            https://js.cytoscape.org/#events
+            A space separated list of cytoscape.js events names
+            to listen to (e.g."click tap"). For a full list of
+            event types refer to https://js.cytoscape.org/#events
         selector: str
-            A selector to specify elements for which the event handler runs
-            (e.g. "node"). For specification details refer to https://js.cytoscape.org/#selectors
+            A selector to specify elements for which the event
+            handler runs (e.g. "node"). For specification details
+            refer to https://js.cytoscape.org/#selectors
 
         Example
         ----------

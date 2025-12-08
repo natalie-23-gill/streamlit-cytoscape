@@ -15,8 +15,10 @@ sample = {
         {"data": {"id": "n3", "label": "CLAIM"}},
     ],
     "edges": [
-        {"data": {"id": "e1", "source": "n1", "target": "n2", "label": "DRIVES"}},
-        {"data": {"id": "e2", "source": "n2", "target": "n3", "label": "INVOVLED_IN"}},
+        {"data": {"id": "e1", "source": "n1", "target": "n2",
+                  "label": "DRIVES"}},
+        {"data": {"id": "e2", "source": "n2", "target": "n3",
+                  "label": "INVOVLED_IN"}},
     ],
 }
 

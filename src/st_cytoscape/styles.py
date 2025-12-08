@@ -16,31 +16,37 @@ class NodeStyle:
         Parameters
         ----------
         label : str
-            The label of the node. This label is used to identify the group or
-            category of the node.
+            The label of the node. This label is used to identify
+            the group or category of the node.
         color : Optional[str]
-            Specifies the background color of the node. If not provided, the
-            default node color "#0a0a0a" will be used.
+            Specifies the background color of the node. If not
+            provided, the default node color "#0a0a0a" will be
+            used.
         caption : Optional[str]
-            Name of the node's attribute to use as caption/label. If not provided,
-            no caption will be shown.
+            Name of the node's attribute to use as caption/label.
+            If not provided, no caption will be shown.
         icon: Optional[str]
-            Node icon to be passed by the name of Material Icons (e.g. 'person')
-            or by url (e.g. url('...')). A list of supported icons is available
-            in `st_cytoscape.icons`
+            Node icon to be passed by the name of Material Icons
+            (e.g. 'person') or by url (e.g. url('...')). A list of
+            supported icons is available in `st_cytoscape.icons`
         custom_styles: Optional[Dict[str, Any]]
-            A dictionary of additional Cytoscape.js styles to apply to the node.
-            This allows for control of any valid styles beyond the basic options
-            provided by the constructor. For detailed information on available
+            A dictionary of additional Cytoscape.js styles to
+            apply to the node. This allows for control of any
+            valid styles beyond the basic options provided by the
+            constructor. For detailed information on available
             styles, visit: https://js.cytoscape.org/#style
 
         Example
         -------
-        >>> node_style = NodeStyle(label="Person", color="#345eeb", caption="name")
+        >>> node_style = NodeStyle(
+        ...     label="Person", color="#345eeb", caption="name"
+        ... )
         >>> node_style = NodeStyle(
         ...     label="Person",
         ...     color="#345eeb",
-        ...     custom_styles={"border-width": 3, "border-color": "#000"}
+        ...     custom_styles={
+        ...         "border-width": 3, "border-color": "#000"
+        ...     }
         ... )
         """
         self.label = label
@@ -58,7 +64,9 @@ class NodeStyle:
         if self.caption:
             style["label"] = f"data({self.caption})"
         if self.icon:
-            if not self.icon.startswith("url") and not self.icon.endswith(".svg"):
+            is_url = self.icon.startswith("url")
+            is_svg = self.icon.endswith(".svg")
+            if not is_url and not is_svg:
                 self.icon = f"./icons/{self.icon.lower()}.svg"
             style["background-image"] = self.icon
         if self.custom_styles:
@@ -87,27 +95,30 @@ class EdgeStyle:
         Parameters
         ----------
         label : str
-            The label of the edge. This label is used to identify the group or
-            category of the edge.
+            The label of the edge. This label is used to identify
+            the group or category of the edge.
         color : Optional[str]
             Specifies the color of the edge line.
         caption : Optional[str], default None
-            Name of the edge's attribute to use as caption/label. If not provided,
-            no caption will be shown.
+            Name of the edge's attribute to use as caption/label.
+            If not provided, no caption will be shown.
         directed : bool, default False
-            Indicates whether the edge is directed. If True, the edge will be
-            rendered with an arrow pointing from the source to target. Default
-            is False. Note: Arrows will not be displayed if `curve_style`
-            is set to "haystack".
+            Indicates whether the edge is directed. If True, the
+            edge will be rendered with an arrow pointing from the
+            source to target. Default is False. Note: Arrows will
+            not be displayed if `curve_style` is set to "haystack".
         curve_style: Optional[str]
-            Specifies the edge curving method to use. By default, it is set to
-            "bezier", which is suitable for multigraphs. For large, simple graphs,
-            consider using "haystack" for better performance. For more options
-            and detailed information, visit: https://js.cytoscape.org/#style/edge-line
+            Specifies the edge curving method to use. By default,
+            it is set to "bezier", which is suitable for
+            multigraphs. For large, simple graphs, consider using
+            "haystack" for better performance. For more options
+            and detailed information, visit:
+            https://js.cytoscape.org/#style/edge-line
         custom_styles: Optional[Dict[str, Any]]
-            A dictionary of additional Cytoscape.js styles to apply to the edge.
-            This allows for control of any valid styles beyond the basic options
-            provided by the constructor. For detailed information on available
+            A dictionary of additional Cytoscape.js styles to
+            apply to the edge. This allows for control of any
+            valid styles beyond the basic options provided by the
+            constructor. For detailed information on available
             styles, visit: https://js.cytoscape.org/#style
 
         Example

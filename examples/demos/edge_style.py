@@ -20,7 +20,8 @@ CURVE_STYLES = [
 st.markdown("# Edge Styles")
 st.markdown(
     """
-    A unique edge style can be applied to each group of edges (grouped by `label`
+    A unique edge style can be applied to each group of edges (grouped by
+    `label`
     data element). Here is an example of modifying `FOLLOWS` edges style
     """
 )
@@ -39,15 +40,25 @@ node_styles = [
 ]
 
 edge_styles = [
-    EdgeStyle(label, color, caption, directed=directed, curve_style=curve_style),
+    EdgeStyle(
+        label, color, caption, directed=directed, curve_style=curve_style
+    ),
     EdgeStyle("POSTED", caption="label", directed=True),
     EdgeStyle("QUOTES", caption="label", directed=True),
 ]
 
-layout = {"name": "cose", "animate": "end", "nodeDimensionsIncludeLabels": False}
+layout = {
+    "name": "cose",
+    "animate": "end",
+    "nodeDimensionsIncludeLabels": False
+}
 
 st_cytoscape(
-    elements, node_styles=node_styles, edge_styles=edge_styles, layout=layout, key="xyz"
+    elements,
+    node_styles=node_styles,
+    edge_styles=edge_styles,
+    layout=layout,
+    key="xyz"
 )
 
 with st.expander("Snippet", expanded=False, icon="💻"):
@@ -56,7 +67,9 @@ with st.expander("Snippet", expanded=False, icon="💻"):
         from st_cytoscape import st_cytoscape, NodeStyle, EdgeStyle
 
         edge_styles = [
-            EdgeStyle({label=}, {color=}, {caption=}, {directed=}, {curve_style=}),
+            EdgeStyle(
+                {label=}, {color=}, {caption=}, {directed=}, {curve_style=}
+            ),
             EdgeStyle("POSTED", caption='label', directed=True),
             EdgeStyle("QUOTES", caption='label', directed=True),
         ]
@@ -66,7 +79,11 @@ with st.expander("Snippet", expanded=False, icon="💻"):
             NodeStyle("POST", "#2A629A", "created_at", "description")
         ]
 
-        layout = {{"name": "cose", "animate": "end", "nodeDimensionsIncludeLabels": False}}
+        layout = {{
+            "name": "cose",
+            "animate": "end",
+            "nodeDimensionsIncludeLabels": False
+        }}
 
         elements = {json.dumps(elements)}
 

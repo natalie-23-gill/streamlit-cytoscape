@@ -11,7 +11,8 @@ PERSON_ATTRS = list(elements["nodes"][0]["data"].keys()) + [None]
 st.markdown("# Node Styles")
 st.markdown(
     """
-    A unique node style can be applied to each group of nodes (grouped by `label`
+    A unique node style can be applied to each group of nodes (grouped by
+    `label`
     data element). Here is an example of modifying `PERSON` nodes styles
     """
 )
@@ -33,10 +34,18 @@ edge_styles = [
     EdgeStyle("QUOTES", caption="label", directed=True),
 ]
 
-layout = {"name": "cose", "animate": "end", "nodeDimensionsIncludeLabels": False}
+layout = {
+    "name": "cose",
+    "animate": "end",
+    "nodeDimensionsIncludeLabels": False
+}
 
 st_cytoscape(
-    elements, node_styles=node_styles, edge_styles=edge_styles, layout=layout, key="xyz"
+    elements,
+    node_styles=node_styles,
+    edge_styles=edge_styles,
+    layout=layout,
+    key="xyz"
 )
 
 with st.expander("Snippet", expanded=False, icon="💻"):
@@ -46,7 +55,10 @@ with st.expander("Snippet", expanded=False, icon="💻"):
 
         node_styles = [
             NodeStyle({label=}, {color=}, {caption=}, {icon=}),
-            NodeStyle(label="POST", color="#2A629A", caption="created_at", icon="description")
+            NodeStyle(
+                label="POST", color="#2A629A",
+                caption="created_at", icon="description"
+            )
         ]
 
         edge_styles = [
@@ -55,7 +67,11 @@ with st.expander("Snippet", expanded=False, icon="💻"):
             EdgeStyle("QUOTES", caption='label', directed=True),
         ]
 
-        layout = {{"name": "cose", "animate": "end", "nodeDimensionsIncludeLabels": False}}
+        layout = {{
+            "name": "cose",
+            "animate": "end",
+            "nodeDimensionsIncludeLabels": False
+        }}
 
         elements = {json.dumps(elements)}
 

@@ -8,15 +8,17 @@ LAYOUT_NAMES = list(LAYOUTS.keys())
 st.markdown("# Expand / Remove Nodes")
 st.markdown(
     """
-    The `node_actions` parameter allows for interactive expansion and removal of
-    nodes in the graph. When used, the triggered events are sent back to the Streamlit
-    app along with the selected node IDs, allowing developers to handle the necessary
+    The `node_actions` parameter allows for interactive expansion and
+    removal of nodes in the graph. When used, the triggered events are
+    sent back to the Streamlit app along with the selected node IDs,
+    allowing developers to handle the necessary
     updates to the graph elements.
      - Removal is triggered by delete/backspace keydown or remove button click.
      - Expansion is triggered by node double click or expand button click.
 
-     When any of these events are triggered the event is sent back along with selected
-     node IDs to the Streamlit app as the component's return value. Users can then handle
+     When any of these events are triggered the event is sent back along with
+     selected node IDs to the Streamlit app as the component's return value.
+     Users can then handle
     the necessary updates to the elements.
 
     #### Example use with a callback
@@ -34,7 +36,12 @@ st.code(
             node_ids = val["data"]["node_ids"]
             # .. handle remove
 
-    st_cytoscape(elements, node_actions=['remove', 'expand'], on_change=my_call_back, key="mygraph")
+    st_cytoscape(
+        elements,
+        node_actions=['remove', 'expand'],
+        on_change=my_call_back,
+        key="mygraph"
+    )
         """,
     language="python",
 )
@@ -42,8 +49,10 @@ st.code(
 st.warning(
     """
     **Notes**
-    - Ensure all edges have an existing source and target IDs to prevent errors.
-    - This configuration is only initialized once. For changes to take effect, you need
+    - Ensure all edges have an existing source and target IDs to prevent
+    errors.
+    - This configuration is only initialized once. For changes to take
+    effect, you need
     to remount the component.
     """,
     icon="⚠️",
@@ -56,13 +65,21 @@ class DummyGraph:
             elements = json.load(f)
         self.all_nodes = elements["nodes"]
         self.all_edges = elements["edges"]
-        self.nodes = set([n["data"]["id"] for n in elements["nodes"]])
-        self.edges = set([e["data"]["id"] for e in elements["edges"]])
+        self.nodes = set(
+            [n["data"]["id"] for n in elements["nodes"]]
+        )
+        self.edges = set(
+            [e["data"]["id"] for e in elements["edges"]]
+        )
 
     def get_elements(self):
         return {
-            "nodes": [n for n in self.all_nodes if n["data"]["id"] in self.nodes],
-            "edges": [e for e in self.all_edges if e["data"]["id"] in self.edges],
+            "nodes": [
+                n for n in self.all_nodes if n["data"]["id"] in self.nodes
+            ],
+            "edges": [
+                e for e in self.all_edges if e["data"]["id"] in self.edges
+            ],
         }
 
     def remove(self, node_ids):
@@ -84,7 +101,8 @@ class DummyGraph:
         self.edges = {
             e["data"]["id"]
             for e in self.all_edges
-            if e["data"]["source"] in self.nodes and e["data"]["target"] in self.nodes
+            if e["data"]["source"] in self.nodes
+            and e["data"]["target"] in self.nodes
         }
 
 

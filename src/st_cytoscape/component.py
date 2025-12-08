@@ -40,38 +40,47 @@ def st_cytoscape(
     Parameters
     ----------
     elements : dict
-        Graph elements data including nodes and edges. Each node should have
-        an 'id', and 'label'. Each edge should have an 'id', 'source', 'target',
-        and 'label'.
+        Graph elements data including nodes and edges. Each node
+        should have an 'id', and 'label'. Each edge should have
+        an 'id', 'source', 'target', and 'label'.
     layout : Union[str, dict], default 'cose'
-        Layout configuration for Cytoscape. If a string is provided, it
-        specifies the layout name. If a dictionary is provided, it should
-        contain layout options. Default is "cose". A list of support layouts and
-        default settings is available in `st_cytoscape.layouts`
+        Layout configuration for Cytoscape. If a string is
+        provided, it specifies the layout name. If a dictionary
+        is provided, it should contain layout options. Default is
+        "cose". A list of support layouts and default settings is
+        available in `st_cytoscape.layouts`
     node_styles : list[NodeStyle], default []
-        A list of custom NodeStyle instances to apply styles to node groups in the graph
+        A list of custom NodeStyle instances to apply styles to
+        node groups in the graph
     edge_styles : list[EdgeStyle], default []
-        A list of custom EdgeStyle instances to apply styles to edge groups in the graph
+        A list of custom EdgeStyle instances to apply styles to
+        edge groups in the graph
     height: int, default 500
-        Component's height in pixels. NOTE: only defined once. Changing the value
-        requires remounting the component.
+        Component's height in pixels. NOTE: only defined once.
+        Changing the value requires remounting the component.
     key : str, default None
-        A unique key for the component. If provided, this key allows multiple
-        instances of the component to exist in the same Streamlit app without
-        conflicts. Setting this parameter is also important to avoid unnecessary
+        A unique key for the component. If provided, this key
+        allows multiple instances of the component to exist in
+        the same Streamlit app without conflicts. Setting this
+        parameter is also important to avoid unnecessary
         re-rendering of the component.
     node_actions: list[Literal['remove', 'expand']], default []
-        Specifies the actions to enable for nodes. Valid options are 'remove' and
-        'expand'. 'remove' allows nodes to be removed via delete keydown or a remove
-        button click. 'expand' allows nodes to be expanded via double-click or an expand
-        button click. When any of these actions are triggered, the event information is
-        sent back to the Streamlit app as the component's return value. CAUTION: keeping
-        an edge with missing source or target IDs will lead to an error.
+        Specifies the actions to enable for nodes. Valid options
+        are 'remove' and 'expand'. 'remove' allows nodes to be
+        removed via delete keydown or a remove button click.
+        'expand' allows nodes to be expanded via double-click or
+        an expand button click. When any of these actions are
+        triggered, the event information is sent back to the
+        Streamlit app as the component's return value. CAUTION:
+        keeping an edge with missing source or target IDs will
+        lead to an error.
     events: list[Event], default []
-        For advanced usage only. A list of events to listen to.  When any of these
-        events are triggered, the event information is sent back to the Streamlit
-        app as the component's return value. NOTE: only defined once. Changing the
-        list of events requires remounting the component.
+        For advanced usage only. A list of events to listen to.
+        When any of these events are triggered, the event
+        information is sent back to the Streamlit app as the
+        component's return value. NOTE: only defined once.
+        Changing the list of events requires remounting the
+        component.
     """
     node_styles_dump = [n.dump() for n in node_styles]
     edge_styles_dump = [e.dump() for e in edge_styles]

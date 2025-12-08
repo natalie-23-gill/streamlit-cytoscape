@@ -34,8 +34,10 @@ elements_tab1 = {
     "edges": [
         {"data": {"id": "ab", "source": "a", "target": "b", "label": "KNOWS"}},
         {"data": {"id": "bc", "source": "b", "target": "c", "label": "KNOWS"}},
-        {"data": {"id": "ad", "source": "a", "target": "d", "label": "DRIVES"}},
-        {"data": {"id": "ce", "source": "c", "target": "e", "label": "DRIVES"}},
+        {"data": {"id": "ad", "source": "a", "target": "d",
+                  "label": "DRIVES"}},
+        {"data": {"id": "ce", "source": "c", "target": "e",
+                  "label": "DRIVES"}},
     ],
 }
 
@@ -49,12 +51,18 @@ elements_tab2 = {
         {"data": {"id": "n6", "label": "PERSON"}},
     ],
     "edges": [
-        {"data": {"id": "e1", "source": "n1", "target": "n3", "label": "FILED_BY"}},
-        {"data": {"id": "e2", "source": "n2", "target": "n6", "label": "FILED_BY"}},
-        {"data": {"id": "e3", "source": "n3", "target": "n4", "label": "DRIVES"}},
-        {"data": {"id": "e4", "source": "n6", "target": "n5", "label": "DRIVES"}},
-        {"data": {"id": "e5", "source": "n4", "target": "n1", "label": "INVOLVED_IN"}},
-        {"data": {"id": "e6", "source": "n5", "target": "n2", "label": "INVOLVED_IN"}},
+        {"data": {"id": "e1", "source": "n1", "target": "n3",
+                  "label": "FILED_BY"}},
+        {"data": {"id": "e2", "source": "n2", "target": "n6",
+                  "label": "FILED_BY"}},
+        {"data": {"id": "e3", "source": "n3", "target": "n4",
+                  "label": "DRIVES"}},
+        {"data": {"id": "e4", "source": "n6", "target": "n5",
+                  "label": "DRIVES"}},
+        {"data": {"id": "e5", "source": "n4", "target": "n1",
+                  "label": "INVOLVED_IN"}},
+        {"data": {"id": "e6", "source": "n5", "target": "n2",
+                  "label": "INVOLVED_IN"}},
     ],
 }
 

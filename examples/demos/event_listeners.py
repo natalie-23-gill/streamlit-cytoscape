@@ -13,7 +13,10 @@ else:
 st.markdown("# Events Listeners")
 st.error(
     """
-    With node actions feature added, the use case for this feature is no longer clear and may be removed in the future. If you have a use case for it please share via [Github](https://github.com/natalie-23-gill/st-cytoscape).
+    With node actions feature added, the use case for this feature is no
+    longer clear and may be removed in the future. If you have a use case
+    for it please
+    share via [Github](https://github.com/natalie-23-gill/st-cytoscape).
     """,
     icon="🚨",
 )
@@ -23,16 +26,20 @@ st.markdown(
     the event information is sent back to the Streamlit app as the component's
     return value. Each event can be defined using `Event` class which takes the
     following paramters:
-     - **name:** User defined name which will be included in the return value to help identify the event
-     - **event_type:** A space separated list of cytoscape.js events names to listen to (e.g.`click tap`).
-        For a full list of event types refer to [Cytoscape.js events](https://js.cytoscape.org/#events)
-     - **selector:** A selector to specify elements for which the event handler runs (e.g. `node`).
-        For specification details refer to [Cytoscape.js selectors](https://js.cytoscape.org/#selectors)
+     - **name:** User defined name which will be included in the return value
+       to help identify the event
+     - **event_type:** A space separated list of cytoscape.js events names to
+       listen to (e.g.`click tap`). For a full list of event types refer to
+       [Cytoscape.js events](https://js.cytoscape.org/#events)
+     - **selector:** A selector to specify elements for which the event handler
+       runs (e.g. `node`). For specification details refer to
+       [Cytoscape.js selectors](https://js.cytoscape.org/#selectors)
     """
 )
 
 st.warning(
-    "**NOTE:** event listners are only configured once. For changes in its configuration to take effect, you need to remount the componet."
+    "**NOTE:** event listners are only configured once. For changes in its "
+    "configuration to take effect, you need to remount the componet."
 )
 
 st.markdown("The following example uses two events.")
