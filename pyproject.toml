@@ -1,11 +1,14 @@
 [tool.poetry]
 name = "streamlit-cytoscape"
-version = "0.1.0"
+version = "0.1.1"
 description = "A flexible, customizable, Streamlit component for interactive graph visualization using Cytoscape.js"
 authors = ["Natalie Gill"]
 license = "MIT"
 readme = "README.md"
 packages = [{include = "streamlit_cytoscape", from = "src"}]
+include = [
+    { path = "src/streamlit_cytoscape/frontend/build/**/*", format = ["sdist", "wheel"] }
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
