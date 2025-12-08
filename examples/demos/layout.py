@@ -1,7 +1,7 @@
 import json
 import streamlit as st
-from st_cytoscape import st_cytoscape, NodeStyle
-from st_cytoscape.layouts import LAYOUTS
+from streamlit_cytoscape import streamlit_cytoscape, NodeStyle
+from streamlit_cytoscape.layouts import LAYOUTS
 
 LAYOUT_NAMES = list(LAYOUTS.keys())
 
@@ -39,13 +39,13 @@ node_styles = [
     NodeStyle("PERSON", "#01204E", None, "person"),
 ]
 
-st_cytoscape(elements, layout, node_styles, key="xyz")
+streamlit_cytoscape(elements, layout, node_styles, key="xyz")
 
 
 with st.expander("Snippet", expanded=False, icon="💻"):
     st.code(
         f"""
-        from st_cytoscape import st_cytoscape, NodeStyle, EdgeStyle
+        from streamlit_cytoscape import streamlit_cytoscape, NodeStyle, EdgeStyle
 
         node_styles = [
             NodeStyle("CLAIM", "#a87c2a", None, "description"),
@@ -57,7 +57,7 @@ with st.expander("Snippet", expanded=False, icon="💻"):
 
         elements = {json.dumps(sample)}
 
-        st_cytoscape(elements, layout, node_styles, key="xyz")
+        streamlit_cytoscape(elements, layout, node_styles, key="xyz")
     """,
         language="python",
     )

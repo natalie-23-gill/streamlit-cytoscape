@@ -40,18 +40,18 @@ If you are proposing a feature:
 
 ## Get Started!
 
-Ready to contribute? Here's how to set up `st_cytoscape` for local development.
+Ready to contribute? Here's how to set up `streamlit_cytoscape` for local development.
 
-1. Download a copy of `st_cytoscape` locally.
+1. Download a copy of `streamlit_cytoscape` locally.
 
-2. Create and activate a conda environment for `st_cytoscape`:
+2. Create and activate a conda environment for `streamlit_cytoscape`:
 
     ```console
-    $ conda create -n st_cytoscape python=3.10
-    $ conda activate st_cytoscape
+    $ conda create -n streamlit_cytoscape python=3.10
+    $ conda activate streamlit_cytoscape
     ```
 
-3. Install `st_cytoscape` using `poetry`:
+3. Install `streamlit_cytoscape` using `poetry`:
 
     ```console
     $ poetry install
@@ -77,5 +77,5 @@ Before you submit a pull request, check that it meets these guidelines:
 
 ## Code of Conduct
 
-Please note that the `st_cytoscape` project is released with a
+Please note that the `streamlit_cytoscape` project is released with a
 Code of Conduct. By contributing to this project you agree to abide by its terms.

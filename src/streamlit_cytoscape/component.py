@@ -2,28 +2,28 @@ import os
 import streamlit.components.v1 as components
 from typing import Optional, Union, Callable, Literal, Dict, Any, List
 
-from st_cytoscape.layouts import LAYOUTS
-from st_cytoscape.styles import NodeStyle, EdgeStyle
-from st_cytoscape.events import Event
+from streamlit_cytoscape.layouts import LAYOUTS
+from streamlit_cytoscape.styles import NodeStyle, EdgeStyle
+from streamlit_cytoscape.events import Event
 
 
 _RELEASE = True
 
 if not _RELEASE:
     _component_func = components.declare_component(
-        "st_cytoscape",
+        "streamlit_cytoscape",
         url="http://localhost:3001",  # For development
     )
 else:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
     build_dir = os.path.join(parent_dir, "frontend/build")
     _component_func = components.declare_component(
-        "st_cytoscape",
+        "streamlit_cytoscape",
         path=build_dir,  # For distribution
     )
 
 
-def st_cytoscape(
+def streamlit_cytoscape(
     elements: Dict[str, Any],
     layout: Union[str, Dict[str, Any]] = "cose",
     node_styles: List[NodeStyle] = [],
@@ -48,7 +48,7 @@ def st_cytoscape(
         provided, it specifies the layout name. If a dictionary
         is provided, it should contain layout options. Default is
         "cose". A list of support layouts and default settings is
-        available in `st_cytoscape.layouts`
+        available in `streamlit_cytoscape.layouts`
     node_styles : list[NodeStyle], default []
         A list of custom NodeStyle instances to apply styles to
         node groups in the graph

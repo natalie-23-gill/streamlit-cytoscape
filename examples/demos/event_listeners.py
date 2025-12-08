@@ -1,6 +1,6 @@
 import json
 import streamlit as st
-from st_cytoscape import st_cytoscape, NodeStyle, EdgeStyle, Event
+from streamlit_cytoscape import streamlit_cytoscape, NodeStyle, EdgeStyle, Event
 
 with open("./data/social.json", "r") as f:
     elements = json.load(f)
@@ -72,7 +72,7 @@ events = [
 
 layout = "fcose"
 with st.container(border=True):
-    vals = st_cytoscape(
+    vals = streamlit_cytoscape(
         elements, layout, node_styles, edge_styles, events=events, key="xyz"
     )
     st.markdown("#### Returned Value")

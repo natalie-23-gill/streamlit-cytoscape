@@ -7,7 +7,7 @@ This creates two tabs with graphs to verify that:
 """
 
 import streamlit as st
-from st_cytoscape import st_cytoscape, NodeStyle
+from streamlit_cytoscape import streamlit_cytoscape, NodeStyle
 
 st.markdown("# Multi-Tab Auto-Fit Test")
 st.markdown(
@@ -76,8 +76,8 @@ tab1, tab2 = st.tabs(["Tab 1 - Graph A", "Tab 2 - Graph B"])
 
 with tab1:
     st.markdown("### Graph A (loaded on page load)")
-    st_cytoscape(elements_tab1, "fcose", node_styles, key="graph_tab1")
+    streamlit_cytoscape(elements_tab1, "fcose", node_styles, key="graph_tab1")
 
 with tab2:
     st.markdown("### Graph B (should auto-fit when tab becomes visible)")
-    st_cytoscape(elements_tab2, "fcose", node_styles, key="graph_tab2")
+    streamlit_cytoscape(elements_tab2, "fcose", node_styles, key="graph_tab2")

@@ -1,7 +1,7 @@
 from playwright.sync_api import Page, expect
 
 
-FRAME_LOCATOR = "iframe[title*='st_cytoscape']"
+FRAME_LOCATOR = "iframe[title*='streamlit_cytoscape']"
 
 
 def test_run(page: Page):

@@ -1,6 +1,6 @@
 import json
 import streamlit as st
-from st_cytoscape import st_cytoscape, NodeStyle, EdgeStyle
+from streamlit_cytoscape import streamlit_cytoscape, NodeStyle, EdgeStyle
 
 with open("./data/social.json", "r") as f:
     elements = json.load(f)
@@ -53,7 +53,7 @@ layout = {
     "nodeDimensionsIncludeLabels": False
 }
 
-st_cytoscape(
+streamlit_cytoscape(
     elements,
     node_styles=node_styles,
     edge_styles=edge_styles,
@@ -64,7 +64,7 @@ st_cytoscape(
 with st.expander("Snippet", expanded=False, icon="💻"):
     st.code(
         f"""
-        from st_cytoscape import st_cytoscape, NodeStyle, EdgeStyle
+        from streamlit_cytoscape import streamlit_cytoscape, NodeStyle, EdgeStyle
 
         edge_styles = [
             EdgeStyle(
@@ -87,7 +87,7 @@ with st.expander("Snippet", expanded=False, icon="💻"):
 
         elements = {json.dumps(elements)}
 
-        st_cytoscape(elements, layout, node_styles, edge_styles, key="xyz")
+        streamlit_cytoscape(elements, layout, node_styles, edge_styles, key="xyz")
     """,
         language="python",
     )

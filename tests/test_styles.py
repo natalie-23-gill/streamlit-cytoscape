@@ -7,7 +7,7 @@ PAGE_NAME = "Custom Styles"
 NODE_ID = "n1"  # First PERSON node in social.json
 EDGE_ID = "e1"  # First FOLLOWS edge in social.json
 ASSIGN_CY = "const cy = document.getElementById('cy')._cyreg.cy;"
-FRAME_LOCATOR = "iframe[title*='st_cytoscape']"
+FRAME_LOCATOR = "iframe[title*='streamlit_cytoscape']"
 
 
 def get_node_style(node_id, iframe):

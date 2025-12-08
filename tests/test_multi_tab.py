@@ -8,7 +8,7 @@ from playwright.sync_api import Page, expect
 
 
 PAGE_NAME = "Multi-Tab"
-FRAME_LOCATOR = "iframe[title*='st_cytoscape']"
+FRAME_LOCATOR = "iframe[title*='streamlit_cytoscape']"
 ASSIGN_CY = "const cy = document.getElementById('cy')._cyreg.cy;"
 
 

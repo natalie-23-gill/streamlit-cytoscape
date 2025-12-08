@@ -1,7 +1,7 @@
 import json
 import streamlit as st
-from st_cytoscape import st_cytoscape, NodeStyle, EdgeStyle
-from st_cytoscape.layouts import LAYOUTS
+from streamlit_cytoscape import streamlit_cytoscape, NodeStyle, EdgeStyle
+from streamlit_cytoscape.layouts import LAYOUTS
 
 LAYOUT_NAMES = list(LAYOUTS.keys())
 
@@ -36,7 +36,7 @@ st.code(
             node_ids = val["data"]["node_ids"]
             # .. handle remove
 
-    st_cytoscape(
+    streamlit_cytoscape(
         elements,
         node_actions=['remove', 'expand'],
         on_change=my_call_back,
@@ -136,7 +136,7 @@ def onchange_callback():
 
 elements = st.session_state.graph.get_elements()
 with st.container(border=True):
-    vals = st_cytoscape(
+    vals = streamlit_cytoscape(
         elements,
         layout=layout,
         node_styles=node_styles,

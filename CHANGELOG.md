@@ -4,7 +4,7 @@
 
 ## v0.1.0 (08/12/2025)
 
-- First release of `st_cytoscape`!
+- First release of `streamlit_cytoscape`!
 
 ### Custom Styling Support
 - Added `custom_styles` parameter to `NodeStyle`, `EdgeStyle`, and `HighlightStyle` classes

@@ -1,4 +1,4 @@
-# st-cytoscape
+# streamlit-cytoscape
 
 A flexible, customizable Streamlit component for interactive graph visualization using Cytoscape.js. This project is a fork of [st-link-analysis](https://github.com/AlrasheedA/st-link-analysis) by [@AlrasheedA](https://github.com/AlrasheedA), who developed the bulk of the original component. This fork extends the original with additional customization options and bug fixes.
 
@@ -22,14 +22,14 @@ This project provides a Streamlit custom component for visualizing and interacti
 ## Installation
 
 ```bash
-pip install st-cytoscape
+pip install streamlit-cytoscape
 ```
 
 ## Usage
 
 ```python
 import streamlit as st
-from st_cytoscape import st_cytoscape, NodeStyle, EdgeStyle
+from streamlit_cytoscape import streamlit_cytoscape, NodeStyle, EdgeStyle
 
 st.set_page_config(layout="wide")
 
@@ -64,15 +64,15 @@ edge_styles = [
 ]
 
 # Render the component
-st.markdown("### st-cytoscape: Example")
-st_cytoscape(elements, "cose", node_styles, edge_styles)
+st.markdown("### streamlit-cytoscape: Example")
+streamlit_cytoscape(elements, "cose", node_styles, edge_styles)
 ```
 
 ## API Reference
 
 | Element        | Description                                                                                               |
 | -------------- | --------------------------------------------------------------------------------------------------------- |
-| `st_cytoscape` | Main component for creating and displaying the graph, including layout and height settings.               |
+| `streamlit_cytoscape` | Main component for creating and displaying the graph, including layout and height settings.               |
 | `NodeStyle`    | Defines styles for nodes, including labels, colors, captions, and icons.                                  |
 | `EdgeStyle`    | Defines styles for edges, including curve styles, labels, colors, and directionality.                     |
 | `Event`        | Define an event to pass to component function and listen to.                                              |
@@ -85,25 +85,25 @@ Ensure you have Python 3.10+, Node.js, and npm installed.
 
 ```bash
 # Create conda environment
-conda create -n st_cytoscape python=3.10
-conda activate st_cytoscape
+conda create -n streamlit_cytoscape python=3.10
+conda activate streamlit_cytoscape
 
 # Install Python package
 poetry install
 
 # Install frontend dependencies
-cd src/st_cytoscape/frontend
+cd src/streamlit_cytoscape/frontend
 npm install
 ```
 
 ### Running the App
 
-Change `_RELEASE` flag in `src/st_cytoscape/component.py` to `False`.
+Change `_RELEASE` flag in `src/streamlit_cytoscape/component.py` to `False`.
 
 In one terminal start the frontend dev server:
 
 ```bash
-cd src/st_cytoscape/frontend
+cd src/streamlit_cytoscape/frontend
 npm run start
 ```
 
@@ -118,8 +118,8 @@ poetry run streamlit run app.py
 
 ```bash
 poetry run black .
-poetry run flake8 st_cytoscape tests examples
-poetry run mypy st_cytoscape
+poetry run flake8 src/streamlit_cytoscape tests examples
+poetry run mypy src/streamlit_cytoscape
 poetry run pytest
 ```
 
@@ -129,7 +129,7 @@ Interested in contributing? Check out the contributing guidelines. Please note t
 
 ## License
 
-`st_cytoscape` was created by Natalie Gill. It is licensed under the terms of the MIT license.
+`streamlit_cytoscape` was created by Natalie Gill. It is licensed under the terms of the MIT license.
 
 ## AI Disclosure Statement
 

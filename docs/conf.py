@@ -6,7 +6,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "st_cytoscape"
+project = "streamlit_cytoscape"
 copyright = "2025, Natalie Gill"
 author = "Natalie Gill"
 

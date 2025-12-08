@@ -6,7 +6,7 @@ import re
 PAGE_NAME = "Node Actions"
 NODE_ID = "c"
 ASSIGN_CY = "const cy = document.getElementById('cy')._cyreg.cy;"
-FRAME_LOCATOR = "iframe[title*='st_cytoscape']"
+FRAME_LOCATOR = "iframe[title*='streamlit_cytoscape']"
 
 
 def AWAIT_RETURN_ACTION(page):

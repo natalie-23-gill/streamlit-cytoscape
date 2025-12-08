@@ -24,15 +24,15 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-          cache-dependency-path: src/st_cytoscape/frontend/package-lock.json
+          cache-dependency-path: src/streamlit_cytoscape/frontend/package-lock.json
 
       - name: Install frontend dependencies
         run: npm ci
-        working-directory: src/st_cytoscape/frontend
+        working-directory: src/streamlit_cytoscape/frontend
 
       - name: Build frontend
         run: npm run build
-        working-directory: src/st_cytoscape/frontend
+        working-directory: src/streamlit_cytoscape/frontend
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -59,7 +59,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: frontend-build
-          path: src/st_cytoscape/frontend/build/
+          path: src/streamlit_cytoscape/frontend/build/
 
   code-quality:
     name: Code Quality Checks
@@ -106,10 +106,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Lint with Flake8
-        run: poetry run flake8 src/st_cytoscape tests examples --count --select=E9,F63,F7,F82 --show-source --statistics
+        run: poetry run flake8 src/streamlit_cytoscape tests examples --count --select=E9,F63,F7,F82 --show-source --statistics
 
       - name: Type check with Mypy
-        run: poetry run mypy src/st_cytoscape
+        run: poetry run mypy src/streamlit_cytoscape
 
   test:
     name: Test (Python ${{ matrix.python-version }})
@@ -128,7 +128,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: frontend-build
-          path: src/st_cytoscape/frontend/build/
+          path: src/streamlit_cytoscape/frontend/build/
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
@@ -159,7 +159,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     environment:
       name: pypi
-      url: https://pypi.org/p/st-cytoscape
+      url: https://pypi.org/p/streamlit-cytoscape
     permissions:
       id-token: write
 
