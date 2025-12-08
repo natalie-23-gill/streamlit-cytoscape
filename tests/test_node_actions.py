@@ -10,7 +10,7 @@ FRAME_LOCATOR = "iframe[title*='st_cytoscape']"
 
 
 def AWAIT_RETURN_ACTION(page):
-    page.get_by_text('"action":"').click()
+    page.get_by_text('"action":"').click(timeout=10000)
 
 
 def AWAIT_SELECT(frame):
@@ -49,6 +49,7 @@ def test_iframe_exists_events(page: Page):
 
 def test_expand_dblclick(page: Page):
     page.get_by_role("link", name=PAGE_NAME).click()
+    page.wait_for_load_state("networkidle")
     frame = page.frame_locator(FRAME_LOCATOR).first.locator(":root")
     frame.click(position={"x": 0, "y": 0})  # await and scroll to view
 
@@ -64,6 +65,7 @@ def test_expand_dblclick(page: Page):
 
 def test_expand_button(page: Page):
     page.get_by_role("link", name=PAGE_NAME).click()
+    page.wait_for_load_state("networkidle")
     frame = page.frame_locator(FRAME_LOCATOR).first.locator(":root")
     frame.click(position={"x": 0, "y": 0})  # await and scroll to view
 
@@ -79,6 +81,7 @@ def test_expand_button(page: Page):
 
 def test_remove_keydown(page: Page):
     page.get_by_role("link", name=PAGE_NAME).click()
+    page.wait_for_load_state("networkidle")
     frame = page.frame_locator(FRAME_LOCATOR).first.locator(":root")
     frame.click(position={"x": 0, "y": 0})  # await and scroll to view
 

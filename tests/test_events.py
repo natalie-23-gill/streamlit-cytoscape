@@ -10,12 +10,12 @@ FRAME_LOCATOR = "iframe[title*='st_cytoscape']"
 
 
 def AWAIT_RETURN_ACTION(page):
-    page.get_by_text('"action":"').click()
+    page.get_by_text('"action":"').click(timeout=10000)
 
 
 def AWAIT_SELECT(frame):
     infopanel_label = frame.locator("#infopanelLabel")
-    expect(infopanel_label).to_be_visible()
+    expect(infopanel_label).to_be_visible(timeout=10000)
 
 
 def get_node_pos(_id, iframe):
@@ -58,6 +58,7 @@ def test_iframe_exists_events(page: Page):
 
 def test_single_click_node_event(page: Page):
     page.get_by_role("link", name=PAGE_NAME).click()
+    page.wait_for_load_state("networkidle")
     frame = page.frame_locator(FRAME_LOCATOR).first.locator(":root")
     frame.click(position={"x": 0, "y": 0})  # await and scroll to view
 
@@ -73,6 +74,7 @@ def test_single_click_node_event(page: Page):
 
 def test_double_click_edge_event(page: Page):
     page.get_by_role("link", name=PAGE_NAME).click()
+    page.wait_for_load_state("networkidle")
     frame = page.frame_locator(FRAME_LOCATOR).first.locator(":root")
     frame.click(position={"x": 0, "y": 0})  # await and scroll to view
 
@@ -88,6 +90,7 @@ def test_double_click_edge_event(page: Page):
 
 def test_single_click_edge_no_event(page: Page):
     page.get_by_role("link", name=PAGE_NAME).click()
+    page.wait_for_load_state("networkidle")
     frame = page.frame_locator(FRAME_LOCATOR).first.locator(":root")
     frame.click(position={"x": 0, "y": 0})  # await and scroll to view
 
