@@ -8,19 +8,25 @@ NODE_ID = "c"
 ASSIGN_CY = "const cy = document.getElementById('cy')._cyreg.cy;"
 FRAME_LOCATOR = "iframe[title*='st_cytoscape']"
 
+
 def AWAIT_RETURN_ACTION(page):
     page.get_by_text('"action":"').click()
 
+
 def AWAIT_SELECT(frame):
-    infopanel_label = frame.locator('#infopanelLabel')
+    infopanel_label = frame.locator("#infopanelLabel")
     expect(infopanel_label).to_be_visible()
 
+
 def get_node_pos(_id, iframe):
-    pos = iframe.evaluate(f"""() => {{
+    pos = iframe.evaluate(
+        f"""() => {{
         {ASSIGN_CY}
         return cy.getElementById("{_id}").renderedPosition();
-    }}""")
+    }}"""
+    )
     return pos
+
 
 def get_return_json(page: Page):
     AWAIT_RETURN_ACTION(page)
@@ -49,7 +55,7 @@ def test_expand_dblclick(page: Page):
     pos = get_node_pos(NODE_ID, frame)
     frame.dblclick(position=pos)
     AWAIT_SELECT(frame)
-    page.get_by_text('"action":"').click() # awaits for action
+    page.get_by_text('"action":"').click()  # awaits for action
     data = get_return_json(page)
 
     assert data["action"] == "expand"

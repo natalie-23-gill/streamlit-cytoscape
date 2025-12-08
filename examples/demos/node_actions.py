@@ -101,8 +101,8 @@ node_styles = [
 ]
 
 edge_styles = [
-    EdgeStyle("WORKS_AT", caption='label', directed=True),
-    EdgeStyle("OWNED_BY", caption='label', directed=True),
+    EdgeStyle("WORKS_AT", caption="label", directed=True),
+    EdgeStyle("OWNED_BY", caption="label", directed=True),
 ]
 
 
@@ -123,7 +123,7 @@ with st.container(border=True):
         layout=layout,
         node_styles=node_styles,
         key=COMPONENT_KEY,
-        node_actions=['remove', 'expand'],
+        node_actions=["remove", "expand"],
         on_change=onchange_callback,
     )
     st.markdown("#### Returned Value")

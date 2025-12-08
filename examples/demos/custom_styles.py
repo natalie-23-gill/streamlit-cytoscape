@@ -22,7 +22,16 @@ st.markdown("## Node Custom Styles")
 row1_left, row1_middle, row1_right = st.columns(3)
 node_shape = row1_left.selectbox(
     "Shape",
-    ["ellipse", "triangle", "rectangle", "diamond", "pentagon", "hexagon", "octagon", "star"],
+    [
+        "ellipse",
+        "triangle",
+        "rectangle",
+        "diamond",
+        "pentagon",
+        "hexagon",
+        "octagon",
+        "star",
+    ],
     index=0,
 )
 node_width = row1_middle.slider("Width", 20, 100, 50)
@@ -50,7 +59,18 @@ edge_opacity = row4_right.slider("Edge Opacity", 0.0, 1.0, 1.0, step=0.1)
 row5_left, row5_middle, row5_right = st.columns(3)
 arrow_shape = row5_left.selectbox(
     "Arrow Shape",
-    ["triangle", "triangle-tee", "circle-triangle", "triangle-backcurve", "vee", "tee", "circle", "diamond", "chevron", "none"],
+    [
+        "triangle",
+        "triangle-tee",
+        "circle-triangle",
+        "triangle-backcurve",
+        "vee",
+        "tee",
+        "circle",
+        "diamond",
+        "chevron",
+        "none",
+    ],
     index=0,
 )
 arrow_scale = row5_middle.slider("Arrow Scale", 0.5, 3.0, 1.0, step=0.1)
@@ -98,7 +118,11 @@ edge_styles = [
 layout = {"name": "cose", "animate": "end", "nodeDimensionsIncludeLabels": False}
 
 st_cytoscape(
-    elements, node_styles=node_styles, edge_styles=edge_styles, layout=layout, key="custom"
+    elements,
+    node_styles=node_styles,
+    edge_styles=edge_styles,
+    layout=layout,
+    key="custom",
 )
 
 with st.expander("Snippet", expanded=False, icon="💻"):

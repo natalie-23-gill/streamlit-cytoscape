@@ -6,9 +6,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u"st_cytoscape"
-copyright = u"2025, Natalie Gill"
-author = u"Natalie Gill"
+project = "st_cytoscape"
+copyright = "2025, Natalie Gill"
+author = "Natalie Gill"
 
 # -- General configuration ---------------------------------------------------
 

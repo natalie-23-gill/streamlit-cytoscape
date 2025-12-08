@@ -34,5 +34,15 @@ multi_tab = st.Page(
 )
 
 # --------- Navigation ---------
-pg = st.navigation([node_style, edge_style, custom_styles, layout, event_listeners, node_actions, multi_tab])
+pg = st.navigation(
+    [
+        node_style,
+        edge_style,
+        custom_styles,
+        layout,
+        event_listeners,
+        node_actions,
+        multi_tab,
+    ]
+)
 pg.run()

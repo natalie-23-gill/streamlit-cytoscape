@@ -1,9 +1,11 @@
 """
 For more details refer to https://js.cytoscape.org/#events
 """
+
 from typing import Dict
 
 RESERVED_NAMES = ["remove", "expand"]
+
 
 class Event:
     def __init__(

@@ -8,26 +8,33 @@ EDGE_ID = "e2"
 ASSIGN_CY = "const cy = document.getElementById('cy')._cyreg.cy;"
 FRAME_LOCATOR = "iframe[title*='st_cytoscape']"
 
+
 def AWAIT_RETURN_ACTION(page):
     page.get_by_text('"action":"').click()
 
+
 def AWAIT_SELECT(frame):
-    infopanel_label = frame.locator('#infopanelLabel')
+    infopanel_label = frame.locator("#infopanelLabel")
     expect(infopanel_label).to_be_visible()
 
+
 def get_node_pos(_id, iframe):
-    pos = iframe.evaluate(f"""() => {{
+    pos = iframe.evaluate(
+        f"""() => {{
         {ASSIGN_CY}
         return cy.getElementById("{_id}").renderedPosition();
-    }}""")
+    }}"""
+    )
     return pos
 
 
 def get_edge_pos(_id, iframe):
-    pos = iframe.evaluate(f"""() => {{
+    pos = iframe.evaluate(
+        f"""() => {{
         {ASSIGN_CY}
         return cy.getElementById("{_id}").renderedMidpoint();
-    }}""")
+    }}"""
+    )
     return pos
 
 

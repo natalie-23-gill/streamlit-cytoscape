@@ -1,4 +1,5 @@
 """Integration tests for custom styles functionality."""
+
 from playwright.sync_api import Page
 
 
@@ -11,7 +12,8 @@ FRAME_LOCATOR = "iframe[title*='st_cytoscape']"
 
 def get_node_style(node_id, iframe):
     """Get the computed style of a node from Cytoscape.js."""
-    style = iframe.evaluate(f"""() => {{
+    style = iframe.evaluate(
+        f"""() => {{
         {ASSIGN_CY}
         const node = cy.getElementById("{node_id}");
         if (!node || node.length === 0) return null;
@@ -21,13 +23,15 @@ def get_node_style(node_id, iframe):
             'border-color': node.style('border-color'),
             'shape': node.style('shape'),
         }};
-    }}""")
+    }}"""
+    )
     return style
 
 
 def get_follows_edge_style(iframe):
     """Get the computed style of the first FOLLOWS edge."""
-    style = iframe.evaluate(f"""() => {{
+    style = iframe.evaluate(
+        f"""() => {{
         {ASSIGN_CY}
         const edges = cy.edges('[label="FOLLOWS"]');
         if (edges.length > 0) {{
@@ -38,7 +42,8 @@ def get_follows_edge_style(iframe):
             }};
         }}
         return null;
-    }}""")
+    }}"""
+    )
     return style
 
 
