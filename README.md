@@ -131,6 +131,11 @@ Interested in contributing? Check out the contributing guidelines. Please note t
 
 `st_cytoscape` was created by Natalie Gill. It is licensed under the terms of the MIT license.
 
+## AI Disclosure Statement
+
+Generative AI tools (Claude Code, Anthropic) were used as coding assistants during the development of this project. The authors maintain full responsibility for the accuracy of all code. AI-assisted outputs were reviewed and validated against expected behavior before integration. 
+
+
 ## Acknowledgments
 
 This project is a fork of [st-link-analysis](https://github.com/AlrasheedA/st-link-analysis) by [@AlrasheedA](https://github.com/AlrasheedA), who developed the bulk of the original component. This fork extends the original with additional customization options.
