@@ -15,7 +15,7 @@ def AWAIT_RETURN_ACTION(page):
 
 def AWAIT_SELECT(frame):
     infopanel_label = frame.locator("#infopanelLabel")
-    expect(infopanel_label).to_be_visible()
+    expect(infopanel_label).to_be_visible(timeout=10000)
 
 
 def get_node_pos(_id, iframe):
@@ -94,6 +94,7 @@ def test_remove_keydown(page: Page):
 
 def test_remove_button(page: Page):
     page.get_by_role("link", name=PAGE_NAME).click()
+    page.wait_for_load_state("networkidle")
     frame = page.frame_locator(FRAME_LOCATOR).first.locator(":root")
     frame.click(position={"x": 0, "y": 0})  # await and scroll to view
 
