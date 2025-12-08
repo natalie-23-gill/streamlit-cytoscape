@@ -10,6 +10,7 @@ This project provides a Streamlit custom component for visualizing and interacti
 ## Features
 
 - **Customizable Node and Edge Styles**: Easily define the appearance of nodes and edges using a variety of style options.
+- **Custom Styles Pass-through**: Use the `custom_styles` parameter on `NodeStyle` and `EdgeStyle` to pass any valid [Cytoscape.js style property](https://js.cytoscape.org/#style) directly, enabling fine-grained control over shapes, borders, opacity, fonts, and more.
 - **Material Icons Support**: Supports a subset of Material icons for styling nodes which can be passed by name (e.g., `icon='person'`). Custom icons can still be used by passing a URL (e.g., `icon='url(...)'`).
 - **Customizable Layouts**: Choose from different layout algorithms to arrange the graph elements.
 - **Interactive Features:**
@@ -68,13 +69,61 @@ st.markdown("### streamlit-cytoscape: Example")
 streamlit_cytoscape(elements, "cose", node_styles, edge_styles)
 ```
 
+### Custom Styles
+
+Use the `custom_styles` parameter to apply any valid Cytoscape.js style property:
+
+```python
+from streamlit_cytoscape import NodeStyle, EdgeStyle
+
+# Custom node styling with borders, shapes, and fonts
+node_styles = [
+    NodeStyle(
+        label="PERSON",
+        color="#FF7F3E",
+        caption="name",
+        icon="person",
+        custom_styles={
+            "shape": "diamond",
+            "width": 60,
+            "height": 60,
+            "border-width": 3,
+            "border-color": "#000000",
+            "border-style": "dashed",
+            "opacity": 0.9,
+            "font-size": 14,
+            "color": "#FFFFFF",
+        },
+    ),
+]
+
+# Custom edge styling with line styles and arrows
+edge_styles = [
+    EdgeStyle(
+        label="FOLLOWS",
+        caption="label",
+        directed=True,
+        custom_styles={
+            "width": 3,
+            "line-style": "dashed",
+            "opacity": 0.8,
+            "target-arrow-shape": "vee",
+            "arrow-scale": 1.5,
+            "font-size": 10,
+        },
+    ),
+]
+```
+
+See the [Cytoscape.js style documentation](https://js.cytoscape.org/#style) for all available properties.
+
 ## API Reference
 
 | Element        | Description                                                                                               |
 | -------------- | --------------------------------------------------------------------------------------------------------- |
 | `streamlit_cytoscape` | Main component for creating and displaying the graph, including layout and height settings.               |
-| `NodeStyle`    | Defines styles for nodes, including labels, colors, captions, and icons.                                  |
-| `EdgeStyle`    | Defines styles for edges, including curve styles, labels, colors, and directionality.                     |
+| `NodeStyle`    | Defines styles for nodes, including labels, colors, captions, icons, and `custom_styles` for Cytoscape.js pass-through. |
+| `EdgeStyle`    | Defines styles for edges, including curve styles, labels, colors, directionality, and `custom_styles` for Cytoscape.js pass-through. |
 | `Event`        | Define an event to pass to component function and listen to.                                              |
 
 ## Development
