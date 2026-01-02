@@ -54,9 +54,7 @@ st.markdown("## Edge Custom Styles")
 
 row4_left, row4_middle, row4_right = st.columns(3)
 edge_width = row4_left.slider("Edge Width", 1, 10, 2)
-edge_style = row4_middle.selectbox(
-    "Line Style", ["solid", "dashed", "dotted"], index=0
-)
+edge_style = row4_middle.selectbox("Line Style", ["solid", "dashed", "dotted"], index=0)
 edge_opacity = row4_right.slider("Edge Opacity", 0.0, 1.0, 1.0, step=0.1)
 
 row5_left, row5_middle, row5_right = st.columns(3)
@@ -118,11 +116,7 @@ edge_styles = [
     EdgeStyle("QUOTES", caption="label", directed=True),
 ]
 
-layout = {
-    "name": "cose",
-    "animate": "end",
-    "nodeDimensionsIncludeLabels": False
-}
+layout = {"name": "cose", "animate": "end", "nodeDimensionsIncludeLabels": False}
 
 streamlit_cytoscape(
     elements,

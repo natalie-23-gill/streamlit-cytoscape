@@ -33,6 +33,7 @@ def streamlit_cytoscape(
     on_change: Optional[Callable[..., None]] = None,
     node_actions: List[Literal["remove", "expand"]] = [],
     events: List[Event] = [],
+    hide_underscore_attrs: bool = True,
 ) -> Any:
     """
     Renders a link analysis graph using Cytoscape in Streamlit.
@@ -81,6 +82,11 @@ def streamlit_cytoscape(
         component's return value. NOTE: only defined once.
         Changing the list of events requires remounting the
         component.
+    hide_underscore_attrs: bool, default True
+        If True, element data attributes with keys starting with
+        an underscore (_) will be hidden from the infopanel. This
+        allows distinguishing between user-facing data and internal
+        styling/rendering data.
     """
     node_styles_dump = [n.dump() for n in node_styles]
     edge_styles_dump = [e.dump() for e in edge_styles]
@@ -104,4 +110,5 @@ def streamlit_cytoscape(
         on_change=on_change,
         nodeActions=node_actions,
         events=events_dump,
+        hideUnderscoreAttrs=hide_underscore_attrs,
     )

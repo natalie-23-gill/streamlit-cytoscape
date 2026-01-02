@@ -6,7 +6,7 @@ import initCyto, { graph } from "./components/graph.js";
 import initToolbar from "./components/toolbar.js";
 import initViewbar from "./components/viewbar.js";
 import initNodeActions, { animateNeighbors } from "./components/nodeActions.js";
-import updateInfopanel from "./components/infopanel.js";
+import updateInfopanel, { initInfopanel } from "./components/infopanel.js";
 
 // Constants / Configurations
 const CONTAINER_ID = "container";
@@ -32,6 +32,9 @@ function onRender(event) {
     newStyle = JSON.stringify(args["style"]) + theme.base;
     newLayout = JSON.stringify(args["layout"]);
     document.getElementById("container").style.height = args["height"];
+
+    // Update infopanel config on every render
+    initInfopanel(args["hideUnderscoreAttrs"]);
 
     // Initialize once
     if (!cy) {

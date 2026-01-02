@@ -6,6 +6,13 @@ const LABEL_ID = "infopanelLabel";
 const PROPS_ID = "infopanelProps";
 const NODEACTIONS_ID = "nodeActions";
 
+// Module-level configuration
+let hideUnderscoreAttrs = true;
+
+function initInfopanel(hideUnderscore) {
+    hideUnderscoreAttrs = hideUnderscore;
+}
+
 // Infopanel children updates
 function _updateLabel(color, label, icon) {
     const label_div = document.getElementById(LABEL_ID);
@@ -22,8 +29,10 @@ function _updateLabel(color, label, icon) {
 function _updateProps(data) {
     const props = document.getElementById(PROPS_ID);
     props.innerHTML = Object.entries(data)
-        .filter((item) => {
-            return item[0] != "label";
+        .filter(([key]) => {
+            if (key === "label") return false;
+            if (hideUnderscoreAttrs && key.startsWith("_")) return false;
+            return true;
         })
         .map(([key, value]) => {
             return `
@@ -60,4 +69,5 @@ function updateInfopanel() {
     _updateProps(data);
 }
 
+export { initInfopanel };
 export default updateInfopanel;
