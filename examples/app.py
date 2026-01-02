@@ -32,6 +32,10 @@ multi_tab = st.Page(
     "./demos/multi_tab.py",
     title="Multi-Tab",
 )
+infopanel = st.Page(
+    "./demos/infopanel.py",
+    title="Infopanel",
+)
 
 # --------- Navigation ---------
 pg = st.navigation(
@@ -43,6 +47,7 @@ pg = st.navigation(
         event_listeners,
         node_actions,
         multi_tab,
+        infopanel,
     ]
 )
 pg.run()
