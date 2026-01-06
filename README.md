@@ -19,6 +19,7 @@ This project provides a Streamlit custom component for visualizing and interacti
   - View all properties of the selected elements in a side panel.
   - Highlights neighboring nodes or edges when an element is selected.
 - **Node Actions (Expand / Remove):** Enable node removal and expansion using the `node_actions` parameter. Removal can be triggered by a delete keydown or a remove button click, while expansion occurs on a double-click or expand button click.
+- **Edge Actions (Collapse / Expand):** Collapse parallel edges (multiple edges between the same nodes) into a single meta-edge showing a priority label and count. Double-click to expand back to individual edges.
 
 ## Installation
 
@@ -116,6 +117,52 @@ edge_styles = [
 ```
 
 See the [Cytoscape.js style documentation](https://js.cytoscape.org/#style) for all available properties.
+
+### Edge Actions (Collapse / Expand Parallel Edges)
+
+When your graph has multiple edges between the same pair of nodes, you can collapse them into a single "meta-edge" that shows a priority label and count:
+
+```python
+from streamlit_cytoscape import streamlit_cytoscape, NodeStyle, EdgeStyle
+
+elements = {
+    "nodes": [
+        {"data": {"id": "alice", "label": "PERSON", "name": "Alice"}},
+        {"data": {"id": "bob", "label": "PERSON", "name": "Bob"}},
+    ],
+    "edges": [
+        # Multiple edges between Alice and Bob
+        {"data": {"id": "e1", "label": "FOLLOWS", "source": "alice", "target": "bob"}},
+        {"data": {"id": "e2", "label": "LIKES", "source": "alice", "target": "bob"}},
+        {"data": {"id": "e3", "label": "WORKS_WITH", "source": "alice", "target": "bob"}},
+    ],
+}
+
+# Collapse parallel edges on load, with FOLLOWS as priority label
+streamlit_cytoscape(
+    elements,
+    layout="cose",
+    edge_actions=["collapse", "expand"],
+    collapse_parallel_edges=True,
+    priority_edge_label="FOLLOWS",  # Shows "FOLLOWS (3)" on the meta-edge
+)
+```
+
+You can also customize the appearance of collapsed meta-edges:
+
+```python
+streamlit_cytoscape(
+    elements,
+    layout="cose",
+    edge_actions=["collapse", "expand"],
+    collapse_parallel_edges=True,
+    meta_edge_style={
+        "line-color": "#FF0000",
+        "width": 5,
+        "font-weight": "bold",
+    },
+)
+```
 
 ## API Reference
 

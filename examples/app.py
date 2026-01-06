@@ -28,6 +28,10 @@ node_actions = st.Page(
     "./demos/node_actions.py",
     title="Node Actions",
 )
+edge_actions = st.Page(
+    "./demos/edge_actions.py",
+    title="Edge Actions",
+)
 multi_tab = st.Page(
     "./demos/multi_tab.py",
     title="Multi-Tab",
@@ -46,6 +50,7 @@ pg = st.navigation(
         layout,
         event_listeners,
         node_actions,
+        edge_actions,
         multi_tab,
         infopanel,
     ]

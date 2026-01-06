@@ -4,7 +4,7 @@ For more details refer to https://js.cytoscape.org/#events
 
 from typing import Dict
 
-RESERVED_NAMES = ["remove", "expand"]
+RESERVED_NAMES = ["remove", "expand", "expand_edge"]
 
 
 class Event:
