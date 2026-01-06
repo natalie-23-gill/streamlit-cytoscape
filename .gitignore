@@ -61,3 +61,4 @@ local_only/
 # Claude files
 CLAUDE.md
 .claude
+.playwright-mcp

@@ -6,6 +6,7 @@ import initCyto, { graph } from "./components/graph.js";
 import initToolbar from "./components/toolbar.js";
 import initViewbar from "./components/viewbar.js";
 import initNodeActions, { animateNeighbors } from "./components/nodeActions.js";
+import initEdgeActions from "./components/edgeActions.js";
 import updateInfopanel, { initInfopanel } from "./components/infopanel.js";
 
 // Constants / Configurations
@@ -29,7 +30,7 @@ let layout, newLayout;
 function onRender(event) {
     const { args, theme } = event.detail;
     newElements = JSON.stringify(args["elements"]);
-    newStyle = JSON.stringify(args["style"]) + theme.base;
+    newStyle = JSON.stringify(args["style"]) + JSON.stringify(args["metaEdgeStyle"] || {}) + theme.base;
     newLayout = JSON.stringify(args["layout"]);
     document.getElementById("container").style.height = args["height"];
 
@@ -43,6 +44,11 @@ function onRender(event) {
         cy.json({ elements: args["elements"] });
         elements = newElements;
         initNodeActions(args["nodeActions"]);
+        initEdgeActions(
+            args["edgeActions"] || [],
+            args["collapseParallelEdges"] || false,
+            args["priorityEdgeLabel"] || null
+        );
         initToolbar();
         initViewbar();
 
@@ -83,6 +89,7 @@ function onRender(event) {
         style = newStyle;
         State.updateState("style", {
             custom_style: args["style"],
+            meta_edge_style: args["metaEdgeStyle"] || {},
             theme: theme.base,
         });
     }

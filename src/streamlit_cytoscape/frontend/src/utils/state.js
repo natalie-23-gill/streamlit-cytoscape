@@ -14,12 +14,14 @@ class StateManager {
             },
             layout: null,
             lastExpanded: false,
+            collapsedEdges: {},
         };
         this.observers = {
             selection: [],
             style: [],
             layout: [],
             lastExpanded: [],
+            collapsedEdges: [],
         };
         StateManager.instance = this;
         return this;

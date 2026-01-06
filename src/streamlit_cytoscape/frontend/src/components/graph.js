@@ -71,10 +71,16 @@ const graph = {
     },
     updateStyle: function () {
         const cy = getCyInstance();
-        const { theme, custom_style } = State.getState("style");
+        const { theme, custom_style, meta_edge_style } = State.getState("style");
+        // Build meta-edge style with user customizations
+        const metaEdgeStyles = STYLES[theme]["metaEdge"].map((s) => ({
+            ...s,
+            style: { ...s.style, ...(meta_edge_style || {}) },
+        }));
         const style = [
             ...STYLES[theme]["default"],
             ...custom_style,
+            ...metaEdgeStyles,
             ...STYLES[theme]["highlight"],
         ];
         document.body.setAttribute("data-theme", theme);

@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.1.3 (06/01/2026)
+
+### Edge Actions: Collapse/Expand Parallel Edges
+- Added `edge_actions` parameter to enable collapsing and expanding of parallel edges
+- Parallel edges (multiple edges between the same source and target) can be collapsed into a single "meta-edge"
+- Meta-edges display a priority label and the count of collapsed edges (e.g., "FOLLOWS (3)")
+- Double-click a collapsed meta-edge to expand it back to individual edges
+- New parameters:
+  - `edge_actions`: List of actions to enable (`['collapse', 'expand']`)
+  - `collapse_parallel_edges`: Auto-collapse parallel edges on initial render
+  - `priority_edge_label`: Configure which edge label takes precedence on meta-edges
+  - `meta_edge_style`: Dictionary of Cytoscape.js styles for customizing meta-edge appearance
+
 ## v0.1.2 (02/01/2026)
 
 ### Infopanel Attribute Filtering

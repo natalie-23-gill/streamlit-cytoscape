@@ -32,6 +32,10 @@ def streamlit_cytoscape(
     key: Optional[str] = None,
     on_change: Optional[Callable[..., None]] = None,
     node_actions: List[Literal["remove", "expand"]] = [],
+    edge_actions: List[Literal["collapse", "expand"]] = [],
+    collapse_parallel_edges: bool = False,
+    priority_edge_label: Optional[str] = None,
+    meta_edge_style: Optional[Dict[str, Any]] = None,
     events: List[Event] = [],
     hide_underscore_attrs: bool = True,
 ) -> Any:
@@ -75,6 +79,26 @@ def streamlit_cytoscape(
         Streamlit app as the component's return value. CAUTION:
         keeping an edge with missing source or target IDs will
         lead to an error.
+    edge_actions: list[Literal['collapse', 'expand']], default []
+        Specifies the actions to enable for edges. Valid options
+        are 'collapse' and 'expand'. When enabled, parallel edges
+        (multiple edges between the same source and target nodes)
+        can be collapsed into a single meta-edge showing a priority
+        label and count. 'expand' allows collapsed meta-edges to be
+        expanded via double-click, restoring the original edges.
+    collapse_parallel_edges: bool, default False
+        If True, parallel edges will be automatically collapsed
+        into meta-edges on initial render. Requires edge_actions
+        to include 'expand' to allow users to expand them.
+    priority_edge_label: Optional[str], default None
+        When collapsing parallel edges, specifies which edge label
+        should be shown as the priority label on the meta-edge.
+        If None or not found, the first edge's label is used.
+    meta_edge_style: Optional[Dict[str, Any]], default None
+        A dictionary of Cytoscape.js styles to apply to collapsed
+        meta-edges. This allows customization of the meta-edge
+        appearance (e.g., line-color, width, line-style). For
+        available styles, visit: https://js.cytoscape.org/#style
     events: list[Event], default []
         For advanced usage only. A list of events to listen to.
         When any of these events are triggered, the event
@@ -109,6 +133,10 @@ def streamlit_cytoscape(
         key=key,
         on_change=on_change,
         nodeActions=node_actions,
+        edgeActions=edge_actions,
+        collapseParallelEdges=collapse_parallel_edges,
+        priorityEdgeLabel=priority_edge_label,
+        metaEdgeStyle=meta_edge_style or {},
         events=events_dump,
         hideUnderscoreAttrs=hide_underscore_attrs,
     )

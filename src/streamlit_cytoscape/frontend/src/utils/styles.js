@@ -53,6 +53,17 @@ const fixedEdgeHStyles = {
     "font-weight": "bold",
 };
 
+const fixedMetaEdgeStyles = {
+    "line-style": "dashed",
+    "width": 3,
+    "text-wrap": "wrap",
+    "text-max-width": "100px",
+    "text-rotation": 0,
+    "font-size": 5,
+    "text-halign": "center",
+    "text-valign": "center",
+};
+
 function _getDefault(theme) {
     return [
         {
@@ -78,6 +89,20 @@ function _getDefault(theme) {
                 "background-color": COLOR[theme].line,
                 "target-arrow-color": COLOR[theme].line,
                 "text-background-color": COLOR[theme].line,
+            },
+        },
+    ];
+}
+
+// Meta-edge styles need to be applied after custom styles to ensure
+// the _metaLabel is used instead of being overridden by edge[label="X"] styles
+function _getMetaEdge() {
+    return [
+        {
+            selector: "edge[_isMetaEdge]",
+            style: {
+                ...fixedMetaEdgeStyles,
+                "label": "data(_metaLabel)",
             },
         },
     ];
@@ -110,10 +135,12 @@ function _getHighlight(theme) {
 const STYLES = {
     light: {
         default: _getDefault("light"),
+        metaEdge: _getMetaEdge(),
         highlight: _getHighlight("light"),
     },
     dark: {
         default: _getDefault("dark"),
+        metaEdge: _getMetaEdge(),
         highlight: _getHighlight("dark"),
     },
 };
