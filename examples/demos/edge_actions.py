@@ -159,9 +159,7 @@ with col1:
     collapse_on_load = st.checkbox("Auto-collapse parallel edges", value=True)
 
 with col2:
-    priority_options = [
-        None, "FOLLOWS", "LIKES", "WORKS_WITH", "KNOWS", "MENTORS"
-    ]
+    priority_options = [None, "FOLLOWS", "LIKES", "WORKS_WITH", "KNOWS", "MENTORS"]
     priority_label = st.selectbox(
         "Priority edge label",
         priority_options,
