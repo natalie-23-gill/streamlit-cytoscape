@@ -68,8 +68,7 @@ def get_return_json(page: Page):
     AWAIT_RETURN_ACTION(page)
     data = (
         page.get_by_test_id("stJson")
-        .first
-        .text_content()
+        .first.text_content()
         .replace('""', '","')
         .replace('}"', '},"')
     )
