@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.1.4 (01/08/2026)
+
+### Bug Fixes
+- Fixed meta-edge color persistence issue where meta-edges would remain red after deselection
+- Meta-edges now preserve the color of their priority edge
+
+### Improvements
+- Added meta-edge style customization to edge_actions demo
+
 ## v0.1.3 (06/01/2026)
 
 ### Edge Actions: Collapse/Expand Parallel Edges
