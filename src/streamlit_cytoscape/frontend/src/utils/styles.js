@@ -103,6 +103,9 @@ function _getMetaEdge() {
             style: {
                 ...fixedMetaEdgeStyles,
                 "label": "data(_metaLabel)",
+                // Use preserved colors from priority edge to maintain visual consistency
+                "line-color": "data(_preservedLineColor)",
+                "target-arrow-color": "data(_preservedArrowColor)",
             },
         },
     ];

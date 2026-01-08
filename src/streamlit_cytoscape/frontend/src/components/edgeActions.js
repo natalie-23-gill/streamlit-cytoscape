@@ -57,6 +57,11 @@ function collapseEdgeGroup(groupKey, edges) {
         }
     }
 
+    // Extract computed colors from priority edge before removal
+    // This preserves the visual appearance when creating the meta-edge
+    const lineColor = priorityEdge.style('line-color');
+    const arrowColor = priorityEdge.style('target-arrow-color');
+
     // Store original edges data before removing
     const originalEdgesData = edges.map((e) => ({
         group: "edges",
@@ -90,6 +95,8 @@ function collapseEdgeGroup(groupKey, edges) {
             _originalGroupKey: groupKey,
             _edgeCount: edges.length,
             _metaLabel: metaLabel,
+            _preservedLineColor: lineColor,
+            _preservedArrowColor: arrowColor,
         },
     });
 

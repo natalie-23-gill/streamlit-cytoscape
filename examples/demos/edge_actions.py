@@ -179,6 +179,13 @@ edge_styles = [
     EdgeStyle("MENTORS", color="#F39C12", caption="label", directed=True),
 ]
 
+# Meta-edge style customization (for testing)
+meta_edge_style = {
+    "line-style": "dashed",
+    "width": 4,
+    "font-weight": "bold",
+}
+
 
 def onchange_callback():
     """Handle edge action events from the component."""
@@ -208,6 +215,7 @@ with st.container(border=True):
         edge_actions=["collapse", "expand"],
         collapse_parallel_edges=collapse_on_load,
         priority_edge_label=priority_label,
+        meta_edge_style=meta_edge_style,
         on_change=onchange_callback,
     )
     st.markdown("#### Returned Value")
