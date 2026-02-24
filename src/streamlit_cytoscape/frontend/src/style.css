@@ -117,8 +117,6 @@ body {
 }
 
 .infopanel[data-expanded="true"] {
-    width: 17.5rem;
-
     & .infopanel__props {
         border: var(--neutral-3) solid;
     }
@@ -203,7 +201,6 @@ body {
     flex-direction: column;
 
     &[data-expanded="true"] {
-        left: 18rem; /*2.0 + 17.5 + 0.5*/
     }
 
     & .bar__item {
@@ -235,4 +232,75 @@ body {
     & .viewbar__zoom {
         height: 4rem;
     }
+}
+
+/* ---------------------------------------------------- */
+/* -------------- Infopanel Resize -------------------- */
+/* ---------------------------------------------------- */
+.infopanel__resize {
+    position: absolute;
+    top: 0;
+    right: -4px;
+    width: 8px;
+    height: 100%;
+    cursor: col-resize;
+    z-index: 3;
+    display: none;
+}
+
+.infopanel[data-expanded="true"] .infopanel__resize {
+    display: block;
+}
+
+.infopanel.dragging,
+#nodeActions.dragging {
+    transition-duration: 0ms;
+}
+
+/* ---------------------------------------------------- */
+/* -------------- Infopanel Actions ------------------- */
+/* ---------------------------------------------------- */
+.infopanel__actions {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+    border-top: var(--neutral-3) solid 1px;
+}
+
+.infopanel[data-expanded="true"] .infopanel__actions:not(:empty) {
+    display: flex;
+}
+
+.infopanel__action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    border: var(--neutral-3) solid 1px;
+    border-radius: 0.4rem;
+    background-color: var(--neutral-2);
+    color: var(--neutral-9);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    transition: background-color 100ms;
+}
+
+.infopanel__action-btn:hover {
+    background-color: var(--neutral-3);
+}
+
+.infopanel__action-btn:active {
+    background-color: var(--neutral-2);
+}
+
+.infopanel__action-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
 }

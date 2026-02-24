@@ -40,6 +40,10 @@ infopanel = st.Page(
     "./demos/infopanel.py",
     title="Infopanel",
 )
+infopanel_actions = st.Page(
+    "./demos/infopanel_actions.py",
+    title="Infopanel Actions",
+)
 
 # --------- Navigation ---------
 pg = st.navigation(
@@ -53,6 +57,7 @@ pg = st.navigation(
         edge_actions,
         multi_tab,
         infopanel,
+        infopanel_actions,
     ]
 )
 pg.run()

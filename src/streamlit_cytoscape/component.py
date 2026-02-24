@@ -5,6 +5,7 @@ from typing import Optional, Union, Callable, Literal, Dict, Any, List
 from streamlit_cytoscape.layouts import LAYOUTS
 from streamlit_cytoscape.styles import NodeStyle, EdgeStyle
 from streamlit_cytoscape.events import Event
+from streamlit_cytoscape.infopanel import InfopanelAction
 
 
 _RELEASE = True
@@ -38,6 +39,7 @@ def streamlit_cytoscape(
     meta_edge_style: Optional[Dict[str, Any]] = None,
     events: List[Event] = [],
     hide_underscore_attrs: bool = True,
+    infopanel_actions: List[InfopanelAction] = [],
 ) -> Any:
     """
     Renders a link analysis graph using Cytoscape in Streamlit.
@@ -111,6 +113,12 @@ def streamlit_cytoscape(
         an underscore (_) will be hidden from the infopanel. This
         allows distinguishing between user-facing data and internal
         styling/rendering data.
+    infopanel_actions: list[InfopanelAction], default []
+        A list of InfopanelAction instances defining custom action
+        buttons shown in the infopanel when an element is selected.
+        When clicked, the action name and selected element data are
+        sent back to the Streamlit app as the component's return
+        value.
     """
     node_styles_dump = [n.dump() for n in node_styles]
     edge_styles_dump = [e.dump() for e in edge_styles]
@@ -124,6 +132,7 @@ def streamlit_cytoscape(
         layout_config = layout
 
     events_dump = [e.dump() for e in events]
+    infopanel_actions_dump = [a.dump() for a in infopanel_actions]
 
     return _component_func(
         elements=elements,
@@ -139,4 +148,5 @@ def streamlit_cytoscape(
         metaEdgeStyle=meta_edge_style or {},
         events=events_dump,
         hideUnderscoreAttrs=hide_underscore_attrs,
+        infopanelActions=infopanel_actions_dump,
     )
