@@ -1,6 +1,11 @@
 import json
 import streamlit as st
-from streamlit_cytoscape import streamlit_cytoscape, NodeStyle, EdgeStyle, Event
+from streamlit_cytoscape import (
+    streamlit_cytoscape,
+    NodeStyle,
+    EdgeStyle,
+    Event,
+)
 
 with open("./data/social.json", "r") as f:
     elements = json.load(f)

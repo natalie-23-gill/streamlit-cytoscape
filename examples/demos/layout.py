@@ -15,8 +15,22 @@ sample = {
         {"data": {"id": "n3", "label": "CLAIM"}},
     ],
     "edges": [
-        {"data": {"id": "e1", "source": "n1", "target": "n2", "label": "DRIVES"}},
-        {"data": {"id": "e2", "source": "n2", "target": "n3", "label": "INVOVLED_IN"}},
+        {
+            "data": {
+                "id": "e1",
+                "source": "n1",
+                "target": "n2",
+                "label": "DRIVES",
+            }
+        },
+        {
+            "data": {
+                "id": "e2",
+                "source": "n2",
+                "target": "n3",
+                "label": "INVOVLED_IN",
+            }
+        },
     ],
 }
 
@@ -43,7 +57,9 @@ streamlit_cytoscape(elements, layout, node_styles, key="xyz")
 with st.expander("Snippet", expanded=False, icon="💻"):
     st.code(
         f"""
-        from streamlit_cytoscape import streamlit_cytoscape, NodeStyle, EdgeStyle
+        from streamlit_cytoscape import (
+            streamlit_cytoscape, NodeStyle,
+        )
 
         node_styles = [
             NodeStyle("CLAIM", "#a87c2a", None, "description"),

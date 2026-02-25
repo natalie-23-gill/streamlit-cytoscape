@@ -34,16 +34,26 @@ edge_styles = [
     EdgeStyle("QUOTES", caption="label", directed=True),
 ]
 
-layout = {"name": "cose", "animate": "end", "nodeDimensionsIncludeLabels": False}
+layout = {
+    "name": "cose",
+    "animate": "end",
+    "nodeDimensionsIncludeLabels": False,
+}
 
 streamlit_cytoscape(
-    elements, node_styles=node_styles, edge_styles=edge_styles, layout=layout, key="xyz"
+    elements,
+    node_styles=node_styles,
+    edge_styles=edge_styles,
+    layout=layout,
+    key="xyz",
 )
 
 with st.expander("Snippet", expanded=False, icon="💻"):
     st.code(
         f"""
-        from streamlit_cytoscape import streamlit_cytoscape, NodeStyle, EdgeStyle
+        from streamlit_cytoscape import (
+            streamlit_cytoscape, NodeStyle, EdgeStyle,
+        )
 
         node_styles = [
             NodeStyle({label=}, {color=}, {caption=}, {icon=}),
@@ -67,7 +77,10 @@ with st.expander("Snippet", expanded=False, icon="💻"):
 
         elements = {json.dumps(elements)}
 
-        streamlit_cytoscape(elements, layout, node_styles, edge_styles, key="xyz")
+        streamlit_cytoscape(
+            elements, layout, node_styles,
+            edge_styles, key="xyz",
+        )
     """,
         language="python",
     )

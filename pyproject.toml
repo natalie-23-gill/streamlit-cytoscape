@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "streamlit-cytoscape"
-version = "0.1.4"
+version = "0.1.5"
 description = "A flexible, customizable, Streamlit component for interactive graph visualization using Cytoscape.js"
 authors = ["Natalie Gill"]
 license = "MIT"
@@ -21,6 +21,9 @@ mypy = "^1.0"
 pytest = "^8.0"
 pytest-playwright = "^0.5"
 pytest-rerunfailures = "^14.0"
+
+[tool.black]
+line-length = 79
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

@@ -14,12 +14,13 @@ This project provides a Streamlit custom component for visualizing and interacti
 - **Material Icons Support**: Supports a subset of Material icons for styling nodes which can be passed by name (e.g., `icon='person'`). Custom icons can still be used by passing a URL (e.g., `icon='url(...)'`).
 - **Customizable Layouts**: Choose from different layout algorithms to arrange the graph elements.
 - **Interactive Features:**
-  - Toolbar with fullscreen, JSON export, and layout refresh buttons.
+  - Toolbar with fullscreen, layout refresh, and export dialog (named file download with optional visual styles).
   - View control bar for zooming, fitting, and centering the view.
   - View all properties of the selected elements in a side panel.
   - Highlights neighboring nodes or edges when an element is selected.
 - **Node Actions (Expand / Remove):** Enable node removal and expansion using the `node_actions` parameter. Removal can be triggered by a delete keydown or a remove button click, while expansion occurs on a double-click or expand button click.
 - **Edge Actions (Collapse / Expand):** Collapse parallel edges (multiple edges between the same nodes) into a single meta-edge showing a priority label and count. Double-click to expand back to individual edges.
+- **Infopanel Actions:** Add custom action buttons to the infopanel using `InfopanelAction`. When a selected element's action button is clicked, the action name and element data are returned to the Streamlit app.
 
 ## Installation
 
@@ -164,6 +165,37 @@ streamlit_cytoscape(
 )
 ```
 
+### Infopanel Actions
+
+Add custom action buttons to the infopanel that appear when an element is selected. Clicking a button returns the action name and selected element data to your Streamlit app:
+
+```python
+from streamlit_cytoscape import (
+    streamlit_cytoscape, NodeStyle, InfopanelAction,
+)
+
+actions = [
+    InfopanelAction("ai_summary", "AI Summary", icon="science"),
+    InfopanelAction("fetch_details", "Fetch Details", icon="analytics"),
+    InfopanelAction("flag_review", "Flag for Review", icon="flag"),
+]
+
+def on_action():
+    val = st.session_state["my_graph"]
+    action = val["action"]       # e.g. "ai_summary"
+    eid = val["data"]["element_id"]  # selected element ID
+    # Update element data, call an API, etc.
+
+streamlit_cytoscape(
+    elements,
+    layout="fcose",
+    node_styles=node_styles,
+    infopanel_actions=actions,
+    on_change=on_action,
+    key="my_graph",
+)
+```
+
 ## API Reference
 
 | Element        | Description                                                                                               |
@@ -171,6 +203,7 @@ streamlit_cytoscape(
 | `streamlit_cytoscape` | Main component for creating and displaying the graph, including layout and height settings.               |
 | `NodeStyle`    | Defines styles for nodes, including labels, colors, captions, icons, and `custom_styles` for Cytoscape.js pass-through. |
 | `EdgeStyle`    | Defines styles for edges, including curve styles, labels, colors, directionality, and `custom_styles` for Cytoscape.js pass-through. |
+| `InfopanelAction` | Defines a custom action button for the infopanel with a name, label, and optional icon.                  |
 | `Event`        | Define an event to pass to component function and listen to.                                              |
 
 ## Development

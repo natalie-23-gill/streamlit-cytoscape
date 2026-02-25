@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.1.5 (24/02/2026)
+
+### Infopanel Actions
+- Added `InfopanelAction` class and `infopanel_actions` parameter to `streamlit_cytoscape()`
+- Custom action buttons are displayed in the infopanel when an element is selected
+- Clicking a button sends the action name and selected element data back to the Streamlit app
+- Each action supports a `name`, `label`, and optional `icon` (Material Icons or URL)
+- New `infopanel_actions` demo page
+
+### Export Dialog
+- Export button now opens a dialog for naming the downloaded file
+- Optional "Include visual styles" checkbox to embed Cytoscape.js styles in the export
+- Downloads graph data as a `.json` file containing visible nodes and edges
+
 ## v0.1.4 (01/08/2026)
 
 ### Bug Fixes
