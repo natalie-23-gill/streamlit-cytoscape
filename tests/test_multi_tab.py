@@ -1,7 +1,7 @@
 """
-Tests for multi-tab auto-fit functionality (st-link-analysis#35).
+Tests for multi-tab auto-fit (st-link-analysis#35).
 
-Verifies that graphs in hidden tabs auto-fit when the tab becomes visible.
+Verifies graphs in hidden tabs auto-fit on visibility.
 """
 
 from playwright.sync_api import Page, expect
@@ -13,7 +13,7 @@ ASSIGN_CY = "const cy = document.getElementById('cy')._cyreg.cy;"
 
 
 def get_graph_extent(frame):
-    """Get the rendered extent (bounding box) of all elements in the graph."""
+    """Get the rendered extent (bounding box) of elements."""
     return frame.evaluate(
         f"""() => {{
         {ASSIGN_CY}
@@ -78,7 +78,7 @@ def test_tab1_graph_renders(page: Page):
 
 
 def test_tab2_graph_auto_fits_on_visibility(page: Page):
-    """Test that the graph in Tab 2 auto-fits when the tab becomes visible."""
+    """Tab 2 graph auto-fits when tab becomes visible."""
     page.get_by_role("link", name=PAGE_NAME).click()
     page.wait_for_load_state("networkidle")
     page.wait_for_selector(FRAME_LOCATOR, timeout=10000)
@@ -88,10 +88,10 @@ def test_tab2_graph_auto_fits_on_visibility(page: Page):
     page.wait_for_load_state("networkidle")
     page.wait_for_timeout(500)  # Allow time for ResizeObserver to trigger
 
-    # Tab 2's iframe is the second one (nth(1)) - Tab 1's iframe gets hidden
+    # Tab 2's iframe is nth(1); Tab 1's gets hidden
     frame = page.frame_locator(FRAME_LOCATOR).nth(1)
 
-    # Verify graph has elements (different graph than Tab 1 - 6 nodes vs 5)
+    # Verify graph has elements (6 nodes vs Tab 1's 5)
     counts = frame.locator(":root").evaluate(
         f"""() => {{
         {ASSIGN_CY}
@@ -104,7 +104,7 @@ def test_tab2_graph_auto_fits_on_visibility(page: Page):
     assert counts["nodes"] == 6, "Tab 2 graph should have 6 nodes"
     assert counts["edges"] == 6, "Tab 2 graph should have 6 edges"
 
-    # Verify container has valid dimensions (not zero - which was the bug)
+    # Verify container has valid dimensions (not zero)
     dims = frame.locator(":root").evaluate(
         """() => {
         const container = document.getElementById('cy');
@@ -114,10 +114,10 @@ def test_tab2_graph_auto_fits_on_visibility(page: Page):
         };
     }"""
     )
-    assert dims["width"] > 0, "Tab 2 container should have width after becoming visible"
+    assert dims["width"] > 0, "Tab 2 container should have width after visible"
     assert (
         dims["height"] > 0
-    ), "Tab 2 container should have height after becoming visible"
+    ), "Tab 2 container should have height after visible"
 
     # Verify graph extent is within reasonable bounds of the container
     # This confirms the graph was fitted after the tab became visible
@@ -132,7 +132,7 @@ def test_tab2_graph_auto_fits_on_visibility(page: Page):
 
 
 def test_switch_back_to_tab1(page: Page):
-    """Test that switching back to Tab 1 still shows the graph correctly."""
+    """Switching back to Tab 1 still shows the graph."""
     page.get_by_role("link", name=PAGE_NAME).click()
     page.wait_for_load_state("networkidle")
     page.wait_for_selector(FRAME_LOCATOR, timeout=10000)
@@ -149,7 +149,7 @@ def test_switch_back_to_tab1(page: Page):
 
     frame = page.frame_locator(FRAME_LOCATOR).first
 
-    # Verify Tab 1 graph still renders correctly (5 nodes vs Tab 2's 6)
+    # Verify Tab 1 graph still renders (5 nodes)
     counts = frame.locator(":root").evaluate(
         f"""() => {{
         {ASSIGN_CY}
@@ -159,7 +159,7 @@ def test_switch_back_to_tab1(page: Page):
         }};
     }}"""
     )
-    assert counts["nodes"] == 5, "Tab 1 graph should have 5 nodes after switching back"
+    assert counts["nodes"] == 5, "Tab 1 graph should have 5 nodes after switch"
 
     dims = frame.locator(":root").evaluate(
         """() => {

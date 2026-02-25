@@ -7,7 +7,7 @@ import initToolbar from "./components/toolbar.js";
 import initViewbar from "./components/viewbar.js";
 import initNodeActions, { animateNeighbors } from "./components/nodeActions.js";
 import initEdgeActions from "./components/edgeActions.js";
-import updateInfopanel, { initInfopanel } from "./components/infopanel.js";
+import updateInfopanel, { initInfopanel, initResize, initInfopanelActions } from "./components/infopanel.js";
 
 // Constants / Configurations
 const CONTAINER_ID = "container";
@@ -51,6 +51,8 @@ function onRender(event) {
         );
         initToolbar();
         initViewbar();
+        initResize();
+        initInfopanelActions(args["infopanelActions"] || []);
 
         // ResizeObserver for multi-tab support - fit graph when container becomes visible
         const resizeObserver = new ResizeObserver(
@@ -69,8 +71,22 @@ function onRender(event) {
         elements = newElements;
         const lastExpanded = State.getState("lastExpanded");
         if (lastExpanded === false) {
-            // default behavior
+            // Save selection before replacing elements
+            const selectedIds = cy.$(":selected").map(el => el.id());
             cy.json({ elements: args["elements"] });
+            // Re-select so infopanel stays open with fresh data
+            if (selectedIds.length > 0) {
+                selectedIds.forEach(id => {
+                    const el = cy.getElementById(id);
+                    if (el.length > 0) el.select();
+                });
+                // Force infopanel refresh — el.select() is a
+                // no-op if already selected, so notify manually
+                State.updateState("selection", {
+                    selected: cy.$(":selected"),
+                    lastSelected: cy.$(":selected").first(),
+                });
+            }
         } else {
             // if last action === expand
             const newNodes = cy

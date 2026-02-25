@@ -70,8 +70,12 @@ class DummyGraph:
 
     def get_elements(self):
         return {
-            "nodes": [n for n in self.all_nodes if n["data"]["id"] in self.nodes],
-            "edges": [e for e in self.all_edges if e["data"]["id"] in self.edges],
+            "nodes": [
+                n for n in self.all_nodes if n["data"]["id"] in self.nodes
+            ],
+            "edges": [
+                e for e in self.all_edges if e["data"]["id"] in self.edges
+            ],
         }
 
     def remove(self, node_ids):
@@ -93,7 +97,8 @@ class DummyGraph:
         self.edges = {
             e["data"]["id"]
             for e in self.all_edges
-            if e["data"]["source"] in self.nodes and e["data"]["target"] in self.nodes
+            if e["data"]["source"] in self.nodes
+            and e["data"]["target"] in self.nodes
         }
 
 

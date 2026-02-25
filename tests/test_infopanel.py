@@ -28,7 +28,7 @@ def get_infopanel_props(frame):
 
 
 def test_iframe_exists_infopanel(page: Page):
-    page.get_by_role("link", name=PAGE_NAME).click()
+    page.get_by_role("link", name=PAGE_NAME, exact=True).click()
     page.wait_for_load_state("networkidle")
     frames = page.query_selector_all(FRAME_LOCATOR)
     assert len(frames) == 1
@@ -55,8 +55,8 @@ def wait_for_node(_id, frame):
 
 
 def test_hide_underscore_attrs_enabled(page: Page):
-    """When hide_underscore_attrs=True, underscore-prefixed keys are hidden."""
-    page.get_by_role("link", name=PAGE_NAME).click()
+    """Underscore-prefixed keys are hidden when enabled."""
+    page.get_by_role("link", name=PAGE_NAME, exact=True).click()
     page.wait_for_load_state("networkidle")
 
     # Wait for iframe to load
@@ -89,11 +89,11 @@ def test_hide_underscore_attrs_enabled(page: Page):
 
 
 def test_hide_underscore_attrs_disabled(page: Page):
-    """When hide_underscore_attrs=False, underscore-prefixed keys are shown."""
-    page.get_by_role("link", name=PAGE_NAME).click()
+    """Underscore-prefixed keys shown when disabled."""
+    page.get_by_role("link", name=PAGE_NAME, exact=True).click()
     page.wait_for_load_state("networkidle")
 
-    # Uncheck the "Hide underscore attributes" checkbox by clicking its text
+    # Uncheck "Hide underscore attributes" checkbox
     page.get_by_text("Hide underscore attributes").click()
     page.wait_for_load_state("networkidle")
 

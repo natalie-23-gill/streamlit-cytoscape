@@ -117,8 +117,6 @@ body {
 }
 
 .infopanel[data-expanded="true"] {
-    width: 17.5rem;
-
     & .infopanel__props {
         border: var(--neutral-3) solid;
     }
@@ -203,7 +201,6 @@ body {
     flex-direction: column;
 
     &[data-expanded="true"] {
-        left: 18rem; /*2.0 + 17.5 + 0.5*/
     }
 
     & .bar__item {
@@ -235,4 +232,180 @@ body {
     & .viewbar__zoom {
         height: 4rem;
     }
+}
+
+/* ---------------------------------------------------- */
+/* -------------- Infopanel Resize -------------------- */
+/* ---------------------------------------------------- */
+.infopanel__resize {
+    position: absolute;
+    top: 0;
+    right: -4px;
+    width: 8px;
+    height: 100%;
+    cursor: col-resize;
+    z-index: 3;
+    display: none;
+}
+
+.infopanel[data-expanded="true"] .infopanel__resize {
+    display: block;
+}
+
+.infopanel.dragging,
+#nodeActions.dragging {
+    transition-duration: 0ms;
+}
+
+/* ---------------------------------------------------- */
+/* -------------- Infopanel Actions ------------------- */
+/* ---------------------------------------------------- */
+.infopanel__actions {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+    border-top: var(--neutral-3) solid 1px;
+}
+
+.infopanel[data-expanded="true"] .infopanel__actions:not(:empty) {
+    display: flex;
+}
+
+.infopanel__action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    border: var(--neutral-3) solid 1px;
+    border-radius: 0.4rem;
+    background-color: var(--neutral-2);
+    color: var(--neutral-9);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    transition: background-color 100ms;
+}
+
+.infopanel__action-btn:hover {
+    background-color: var(--neutral-3);
+}
+
+.infopanel__action-btn:active {
+    background-color: var(--neutral-2);
+}
+
+.infopanel__action-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+}
+
+/* ---------------------------------------------------- */
+/* --------------- Export Dialog ----------------------- */
+/* ---------------------------------------------------- */
+.export-dialog {
+    z-index: 10;
+    border: var(--neutral-3) solid 1px;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    background-color: var(--neutral-2);
+    color: var(--neutral-9);
+    font-family: "Cairo", sans-serif;
+    box-shadow: var(--box-shadow);
+    min-width: 18rem;
+}
+
+.export-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.export-dialog__title {
+    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.export-dialog__label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--neutral-8);
+    margin-bottom: 0.35rem;
+}
+
+.export-dialog__input-row {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.export-dialog__input {
+    flex: 1;
+    padding: 0.4rem 0.6rem;
+    border: var(--neutral-3) solid 1px;
+    border-radius: 0.4rem;
+    background-color: var(--neutral-1);
+    color: var(--neutral-9);
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.export-dialog__input:focus {
+    border-color: var(--neutral-8);
+}
+
+.export-dialog__ext {
+    font-size: 0.9rem;
+    color: var(--neutral-8);
+}
+
+.export-dialog__checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    color: var(--neutral-9);
+    cursor: pointer;
+    margin-bottom: 1.25rem;
+}
+
+.export-dialog__buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.export-dialog__btn {
+    padding: 0.4rem 1rem;
+    border: var(--neutral-3) solid 1px;
+    border-radius: 0.4rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 100ms;
+}
+
+.export-dialog__btn--cancel {
+    background-color: var(--neutral-2);
+    color: var(--neutral-9);
+}
+
+.export-dialog__btn--cancel:hover {
+    background-color: var(--neutral-3);
+}
+
+.export-dialog__btn--confirm {
+    background-color: var(--neutral-9);
+    color: var(--neutral-1);
+    border-color: var(--neutral-9);
+}
+
+.export-dialog__btn--confirm:hover {
+    opacity: 0.9;
 }
