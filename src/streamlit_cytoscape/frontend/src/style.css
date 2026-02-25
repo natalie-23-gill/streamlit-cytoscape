@@ -304,3 +304,108 @@ body {
     background-position: center;
     flex-shrink: 0;
 }
+
+/* ---------------------------------------------------- */
+/* --------------- Export Dialog ----------------------- */
+/* ---------------------------------------------------- */
+.export-dialog {
+    z-index: 10;
+    border: var(--neutral-3) solid 1px;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    background-color: var(--neutral-2);
+    color: var(--neutral-9);
+    font-family: "Cairo", sans-serif;
+    box-shadow: var(--box-shadow);
+    min-width: 18rem;
+}
+
+.export-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.export-dialog__title {
+    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.export-dialog__label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--neutral-8);
+    margin-bottom: 0.35rem;
+}
+
+.export-dialog__input-row {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.export-dialog__input {
+    flex: 1;
+    padding: 0.4rem 0.6rem;
+    border: var(--neutral-3) solid 1px;
+    border-radius: 0.4rem;
+    background-color: var(--neutral-1);
+    color: var(--neutral-9);
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.export-dialog__input:focus {
+    border-color: var(--neutral-8);
+}
+
+.export-dialog__ext {
+    font-size: 0.9rem;
+    color: var(--neutral-8);
+}
+
+.export-dialog__checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    color: var(--neutral-9);
+    cursor: pointer;
+    margin-bottom: 1.25rem;
+}
+
+.export-dialog__buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.export-dialog__btn {
+    padding: 0.4rem 1rem;
+    border: var(--neutral-3) solid 1px;
+    border-radius: 0.4rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 100ms;
+}
+
+.export-dialog__btn--cancel {
+    background-color: var(--neutral-2);
+    color: var(--neutral-9);
+}
+
+.export-dialog__btn--cancel:hover {
+    background-color: var(--neutral-3);
+}
+
+.export-dialog__btn--confirm {
+    background-color: var(--neutral-9);
+    color: var(--neutral-1);
+    border-color: var(--neutral-9);
+}
+
+.export-dialog__btn--confirm:hover {
+    opacity: 0.9;
+}

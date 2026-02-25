@@ -110,6 +110,25 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="bar__icon" viewBox="0 -960 960 960"><path d="M200-440v-80h560v80H200Z"/></svg>
                 </div>
             </div>
+            <!------------------------------------->
+            <!---------- Export Dialog ------------>
+            <!------------------------------------->
+            <dialog id="exportDialog" class="export-dialog">
+                <h3 class="export-dialog__title">Export Graph</h3>
+                <label class="export-dialog__label" for="exportFilename">File name</label>
+                <div class="export-dialog__input-row">
+                    <input id="exportFilename" class="export-dialog__input" type="text" value="graph" />
+                    <span class="export-dialog__ext">.json</span>
+                </div>
+                <label class="export-dialog__checkbox-label">
+                    <input id="exportIncludeStyles" type="checkbox" />
+                    Include visual styles
+                </label>
+                <div class="export-dialog__buttons">
+                    <button id="exportCancel" class="export-dialog__btn export-dialog__btn--cancel">Cancel</button>
+                    <button id="exportConfirm" class="export-dialog__btn export-dialog__btn--confirm">Download</button>
+                </div>
+            </dialog>
         </div>
     </body>
 </html>
