@@ -34,20 +34,26 @@ function _updateLabel(color, label, icon) {
 
 function _updateProps(data) {
     const props = document.getElementById(PROPS_ID);
-    props.innerHTML = Object.entries(data)
+    props.innerHTML = "";
+    Object.entries(data)
         .filter(([key]) => {
             if (key === "label") return false;
             if (hideUnderscoreAttrs && key.startsWith("_")) return false;
             return true;
         })
-        .map(([key, value]) => {
-            return `
-        <div class='infopanel__prop'>
-            <p class='infopanel__key'>${key}</p>
-            <p class='infopanel__val'>${value}</p>
-        </div>`;
-        })
-        .join("");
+        .forEach(([key, value]) => {
+            const div = document.createElement("div");
+            div.className = "infopanel__prop";
+            const keyP = document.createElement("p");
+            keyP.className = "infopanel__key";
+            keyP.textContent = key;
+            const valP = document.createElement("p");
+            valP.className = "infopanel__val";
+            valP.textContent = String(value);
+            div.appendChild(keyP);
+            div.appendChild(valP);
+            props.appendChild(div);
+        });
 }
 
 function initResize() {

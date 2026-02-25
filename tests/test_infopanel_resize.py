@@ -116,11 +116,11 @@ def test_resize_nodeactions_follows(page: Page):
 
     select_node(frame)
 
-    # Get initial nodeActions inline style.left
-    initial_left = frame.evaluate(
+    # Get initial panel width (more stable than style.left)
+    initial_width = frame.evaluate(
         """() => {
-        const el = document.getElementById('nodeActions');
-        return parseFloat(el.style.left) || 0;
+        const el = document.getElementById('infopanel');
+        return el.getBoundingClientRect().width;
     }"""
     )
 
@@ -132,14 +132,20 @@ def test_resize_nodeactions_follows(page: Page):
     frame.locator("#infopanelResize").hover()
     page.mouse.down()
     mid_y = handle_box["y"] + handle_box["height"] / 2
-    page.mouse.move(handle_box["x"] + 100, mid_y)
+    page.mouse.move(handle_box["x"] + 150, mid_y, steps=10)
     page.mouse.up()
+    page.wait_for_timeout(300)
 
-    # Verify nodeActions style.left increased
-    new_left = frame.evaluate(
+    # Verify nodeActions left tracks the new panel width
+    result = frame.evaluate(
         """() => {
-        const el = document.getElementById('nodeActions');
-        return parseFloat(el.style.left) || 0;
+        const panel = document.getElementById('infopanel');
+        const na = document.getElementById('nodeActions');
+        return {
+            panelWidth: panel.getBoundingClientRect().width,
+            naLeft: parseFloat(na.style.left) || 0
+        };
     }"""
     )
-    assert new_left > initial_left
+    assert result["panelWidth"] > initial_width
+    assert result["naLeft"] > initial_width
