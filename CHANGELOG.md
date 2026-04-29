@@ -1,5 +1,25 @@
 # Changelog
 
+## v0.2.0 (29/04/2026)
+
+### NetworkX Integration
+- `nx.cytoscape_data()` output can now be passed directly to `streamlit_cytoscape()`
+- New `networkx_compat` demo page covering Karate Club, Path, Complete, and Petersen graphs
+
+### Input Sanitization
+- New `sanitize_elements()` step coerces node `id` and edge `source`/`target` values to strings
+- Auto-generates `_auto_e{i}` IDs for edges that lack an `id`
+- Input dict is never mutated; a deep copy is returned
+
+### Theme-Aware Default Node Color
+- Default node `background-color` now follows the active light/dark theme instead of being hardcoded
+- Unstyled graphs (e.g. raw NetworkX output) render correctly in both themes
+
+### Demo Reorganization
+- Renamed nav titles for clarity: Custom Styles to Custom CSS, Layout Algorithms to Layouts, Node Actions to Expand & Remove, Edge Actions to Parallel Edges
+- Merged the standalone Infopanel demo into Infopanel Actions and added a `hide_underscore_attrs` toggle
+- Removed the Event Listeners demo and the corresponding test suite
+
 ## v0.1.5 (24/02/2026)
 
 ### Infopanel Actions

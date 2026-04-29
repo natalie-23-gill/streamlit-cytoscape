@@ -3,7 +3,7 @@
 from playwright.sync_api import Page
 
 
-PAGE_NAME = "Custom Styles"
+PAGE_NAME = "Custom CSS"
 NODE_ID = "n1"  # First PERSON node in social.json
 EDGE_ID = "e1"  # First FOLLOWS edge in social.json
 ASSIGN_CY = "const cy = document.getElementById('cy')._cyreg.cy;"

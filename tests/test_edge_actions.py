@@ -3,7 +3,7 @@ import json
 import re
 
 
-PAGE_NAME = "Edge Actions"
+PAGE_NAME = "Parallel Edges"
 ASSIGN_CY = "const cy = document.getElementById('cy')._cyreg.cy;"
 FRAME_LOCATOR = "iframe[title*='streamlit_cytoscape']"
 

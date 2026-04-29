@@ -3,7 +3,7 @@ import json
 import re
 
 
-PAGE_NAME = "Node Actions"
+PAGE_NAME = "Expand & Remove"
 NODE_ID = "c"
 ASSIGN_CY = "const cy = document.getElementById('cy')._cyreg.cy;"
 FRAME_LOCATOR = "iframe[title*='streamlit_cytoscape']"

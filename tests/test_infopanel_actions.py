@@ -5,7 +5,7 @@ from playwright.sync_api import Page, expect
 from streamlit_cytoscape.infopanel import InfopanelAction
 
 
-PAGE_NAME = "Infopanel Actions"
+PAGE_NAME = "Infopanel"
 FRAME_LOCATOR = "iframe[title*='streamlit_cytoscape']"
 ASSIGN_CY = "const cy = document.getElementById('cy')._cyreg.cy;"
 

@@ -6,6 +6,7 @@ from streamlit_cytoscape.layouts import LAYOUTS
 from streamlit_cytoscape.styles import NodeStyle, EdgeStyle
 from streamlit_cytoscape.events import Event
 from streamlit_cytoscape.infopanel import InfopanelAction
+from streamlit_cytoscape.sanitize import sanitize_elements
 
 
 _RELEASE = True
@@ -133,6 +134,8 @@ def streamlit_cytoscape(
 
     events_dump = [e.dump() for e in events]
     infopanel_actions_dump = [a.dump() for a in infopanel_actions]
+
+    elements = sanitize_elements(elements)
 
     return _component_func(
         elements=elements,

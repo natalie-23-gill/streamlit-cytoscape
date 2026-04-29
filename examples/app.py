@@ -14,35 +14,31 @@ edge_style = st.Page(
 )
 custom_styles = st.Page(
     "./demos/custom_styles.py",
-    title="Custom Styles",
+    title="Custom CSS",
 )
 layout = st.Page(
     "./demos/layout.py",
-    title="Layout Algorithms",
-)
-event_listeners = st.Page(
-    "./demos/event_listeners.py",
-    title="Events Listeners",
+    title="Layouts",
 )
 node_actions = st.Page(
     "./demos/node_actions.py",
-    title="Node Actions",
+    title="Expand & Remove",
 )
 edge_actions = st.Page(
     "./demos/edge_actions.py",
-    title="Edge Actions",
+    title="Parallel Edges",
+)
+infopanel_actions = st.Page(
+    "./demos/infopanel_actions.py",
+    title="Infopanel",
 )
 multi_tab = st.Page(
     "./demos/multi_tab.py",
     title="Multi-Tab",
 )
-infopanel = st.Page(
-    "./demos/infopanel.py",
-    title="Infopanel",
-)
-infopanel_actions = st.Page(
-    "./demos/infopanel_actions.py",
-    title="Infopanel Actions",
+networkx_compat = st.Page(
+    "./demos/networkx_compat.py",
+    title="NetworkX",
 )
 
 # --------- Navigation ---------
@@ -52,12 +48,11 @@ pg = st.navigation(
         edge_style,
         custom_styles,
         layout,
-        event_listeners,
         node_actions,
         edge_actions,
-        multi_tab,
-        infopanel,
         infopanel_actions,
+        multi_tab,
+        networkx_compat,
     ]
 )
 pg.run()

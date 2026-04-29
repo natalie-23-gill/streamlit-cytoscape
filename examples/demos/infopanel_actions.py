@@ -12,18 +12,19 @@ from streamlit_cytoscape import (
 with open("./data/social.json", "r") as f:
     base_elements = json.load(f)
 
-st.markdown("# Infopanel Actions")
+st.markdown("# Infopanel")
 st.markdown(
     """
-    The `infopanel_actions` parameter adds custom action buttons
-    to the infopanel. When clicked, the action name and selected
-    element data are sent back to the Streamlit app. The callback
-    can then update the element data, and the infopanel will
-    reflect the changes on re-render.
+    The infopanel shows attributes of the selected element.
+    Use `hide_underscore_attrs` to hide internal attributes
+    prefixed with `_`. The `infopanel_actions` parameter adds
+    custom action buttons. When clicked, the action name and
+    selected element data are sent back to the Streamlit app.
 
     **Try it:** Select a node, then click an action button. The
     infopanel will update to show new attributes added by the
-    callback.
+    callback. Toggle the checkbox to show/hide underscore
+    attributes.
     """
 )
 
@@ -58,6 +59,10 @@ COMPONENT_KEY = "infopanel_actions_demo"
 # Store elements in session state so callbacks can modify them
 if "ip_elements" not in st.session_state:
     st.session_state.ip_elements = copy.deepcopy(base_elements)
+    # Add underscore-prefixed attrs to first node for hide/show demo
+    n0 = st.session_state.ip_elements["nodes"][0]["data"]
+    n0["_style_data"] = "internal"
+    n0["_hidden_attr"] = "hidden"
 
 node_styles = [
     NodeStyle("PERSON", "#FF7F3E", "email", "person"),
@@ -107,6 +112,8 @@ def on_action():
         data["flagged_at"] = now
 
 
+hide_underscore = st.checkbox("Hide underscore attributes", value=True)
+
 with st.container(border=True):
     vals = streamlit_cytoscape(
         st.session_state.ip_elements,
@@ -114,6 +121,7 @@ with st.container(border=True):
         node_styles=node_styles,
         edge_styles=edge_styles,
         infopanel_actions=actions,
+        hide_underscore_attrs=hide_underscore,
         on_change=on_action,
         key=COMPONENT_KEY,
     )
