@@ -229,13 +229,13 @@ If you want `NodeStyle`/`EdgeStyle` selectors to match, add a `label` field to y
 
 ## Development
 
-Ensure you have Python 3.10+, Node.js, and npm installed.
+Ensure you have Python 3.11+, Node.js, and npm installed.
 
 ### Setup
 
 ```bash
 # Create conda environment
-conda create -n streamlit_cytoscape python=3.10
+conda create -n streamlit_cytoscape python=3.11
 conda activate streamlit_cytoscape
 
 # Install Python package

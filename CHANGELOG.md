@@ -2,6 +2,9 @@
 
 ## v0.2.0 (29/04/2026)
 
+### Breaking Changes
+- Minimum Python version is now 3.11 (was 3.10)
+
 ### NetworkX Integration
 - `nx.cytoscape_data()` output can now be passed directly to `streamlit_cytoscape()`
 - New `networkx_compat` demo page covering Karate Club, Path, Complete, and Petersen graphs
