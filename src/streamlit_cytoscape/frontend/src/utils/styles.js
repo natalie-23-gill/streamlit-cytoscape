@@ -6,6 +6,7 @@ const COLOR = {
         font: "rgb(250, 250, 250)",
         border: "rgb(48, 49, 57)",
         fontHighlight: "rgb(250, 250, 250)",
+        node: "rgb(200, 200, 200)",
     },
     light: {
         line: "rgb(195,195,195)",
@@ -13,6 +14,7 @@ const COLOR = {
         border: "rgb(250,250,250)",
         highlight: "rgb(255,50,50)",
         fontHighlight: "rgb(250, 250, 250)",
+        node: "rgb(10, 10, 10)",
     },
 };
 
@@ -27,7 +29,6 @@ const fixedNodeStyles = {
     "background-repeat": "no-repeat",
     "background-width": "60%",
     "background-height": "60%",
-    "background-color": "#0a0a0a",
 };
 
 const fixedEdgeStyles = {
@@ -78,6 +79,7 @@ function _getDefault(theme) {
                 ...fixedNodeStyles,
                 "color": COLOR[theme].font,
                 "border-color": COLOR[theme].border,
+                "background-color": COLOR[theme].node,
             },
         },
         {

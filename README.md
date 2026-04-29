@@ -196,6 +196,27 @@ streamlit_cytoscape(
 )
 ```
 
+### NetworkX Integration
+
+You can pass a [NetworkX](https://networkx.org/) graph directly using `nx.cytoscape_data()`. Edge `source`/`target` values and missing edge `id` fields are automatically sanitized. Default node and edge colors are theme-aware, so graphs render correctly in both light and dark mode without any extra styling.
+
+```python
+import networkx as nx
+from streamlit_cytoscape import streamlit_cytoscape
+
+G = nx.karate_club_graph()
+cyto_data = nx.cytoscape_data(G)
+
+streamlit_cytoscape(
+    elements=cyto_data["elements"],
+    layout="cose",
+)
+```
+
+This works with any NetworkX graph type, e.g. `nx.path_graph()`, `nx.complete_graph()`, `nx.from_pandas_edgelist()`.
+
+If you want `NodeStyle`/`EdgeStyle` selectors to match, add a `label` field to your nodes/edges since `nx.cytoscape_data()` doesn't include one by default.
+
 ## API Reference
 
 | Element        | Description                                                                                               |
@@ -208,13 +229,13 @@ streamlit_cytoscape(
 
 ## Development
 
-Ensure you have Python 3.10+, Node.js, and npm installed.
+Ensure you have Python 3.11+, Node.js, and npm installed.
 
 ### Setup
 
 ```bash
 # Create conda environment
-conda create -n streamlit_cytoscape python=3.10
+conda create -n streamlit_cytoscape python=3.11
 conda activate streamlit_cytoscape
 
 # Install Python package
