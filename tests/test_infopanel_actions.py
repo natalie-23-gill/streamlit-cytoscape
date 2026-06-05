@@ -4,7 +4,6 @@ from playwright.sync_api import Page, expect
 
 from streamlit_cytoscape.infopanel import InfopanelAction
 
-
 PAGE_NAME = "Infopanel"
 FRAME_LOCATOR = "iframe[title*='streamlit_cytoscape']"
 ASSIGN_CY = "const cy = document.getElementById('cy')._cyreg.cy;"
@@ -12,8 +11,7 @@ ASSIGN_CY = "const cy = document.getElementById('cy')._cyreg.cy;"
 
 def wait_for_node(_id, frame):
     """Wait for a node to exist in Cytoscape graph."""
-    frame.evaluate(
-        f"""() => {{
+    frame.evaluate(f"""() => {{
         {ASSIGN_CY}
         return new Promise((resolve) => {{
             const check = () => {{
@@ -26,8 +24,7 @@ def wait_for_node(_id, frame):
             }};
             check();
         }});
-    }}"""
-    )
+    }}""")
 
 
 def AWAIT_SELECT(frame):
@@ -75,6 +72,13 @@ def test_infopanel_action_dump_no_icon():
     assert "icon" not in dumped
 
 
+def test_infopanel_action_dump_spinner():
+    action = InfopanelAction("my_action", "My Action", spinner=True)
+    assert action.dump()["spinner"] is True
+    # spinner is omitted when False (default)
+    assert "spinner" not in InfopanelAction("a", "A").dump()
+
+
 # ---- Playwright integration tests ----
 
 
@@ -110,12 +114,10 @@ def test_action_buttons_appear_when_selected(page: Page):
     wait_for_node("n1", frame)
 
     # Select node
-    frame.evaluate(
-        f"""() => {{
+    frame.evaluate(f"""() => {{
         {ASSIGN_CY}
         cy.getElementById("n1").select();
-    }}"""
-    )
+    }}""")
 
     AWAIT_SELECT(frame)
 
@@ -136,12 +138,10 @@ def test_action_button_label_displayed(page: Page):
 
     wait_for_node("n1", frame)
 
-    frame.evaluate(
-        f"""() => {{
+    frame.evaluate(f"""() => {{
         {ASSIGN_CY}
         cy.getElementById("n1").select();
-    }}"""
-    )
+    }}""")
 
     AWAIT_SELECT(frame)
 
@@ -165,12 +165,10 @@ def test_action_button_click_returns_data(page: Page):
 
     wait_for_node("n1", frame)
 
-    frame.evaluate(
-        f"""() => {{
+    frame.evaluate(f"""() => {{
         {ASSIGN_CY}
         cy.getElementById("n1").select();
-    }}"""
-    )
+    }}""")
 
     AWAIT_SELECT(frame)
 
@@ -188,3 +186,37 @@ def test_action_button_click_returns_data(page: Page):
     assert data["data"]["element_id"] == "n1"
     assert data["data"]["element_group"] == "nodes"
     assert "element_data" in data["data"]
+
+
+@pytest.mark.flaky(reruns=2, reruns_delay=1)
+def test_ai_summary_async_populates_infopanel(page: Page):
+    """AI Summary runs in a background thread: the infopanel shows a
+    pending state first, then the generated result replaces it."""
+    page.get_by_role("link", name=PAGE_NAME).click()
+    page.wait_for_load_state("networkidle")
+
+    frame = page.frame_locator(FRAME_LOCATOR).first.locator(":root")
+    expect(frame.locator("#cy")).to_be_visible(timeout=10000)
+    frame.click(position={"x": 0, "y": 0})
+
+    wait_for_node("n1", frame)
+    frame.evaluate(f"""() => {{
+        {ASSIGN_CY}
+        cy.getElementById("n1").select();
+    }}""")
+    AWAIT_SELECT(frame)
+
+    selector = ".infopanel__action-btn[data-action-name='ai_summary']"
+    ai_btn = frame.locator(selector)
+    expect(ai_btn).to_be_visible(timeout=5000)
+    ai_btn.click()
+
+    summary_val = frame.locator(
+        ".infopanel__prop", has_text="ai_summary"
+    ).locator(".infopanel__val")
+
+    # Pending appears quickly: a blocking handler would have skipped
+    # straight to the result instead of showing "generating".
+    expect(summary_val).to_contain_text("generating", timeout=6000)
+    # The background result lands and replaces the pending text.
+    expect(summary_val).to_contain_text("AI summary for", timeout=15000)

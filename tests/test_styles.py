@@ -2,7 +2,6 @@
 
 from playwright.sync_api import Page
 
-
 PAGE_NAME = "Custom CSS"
 NODE_ID = "n1"  # First PERSON node in social.json
 EDGE_ID = "e1"  # First FOLLOWS edge in social.json
@@ -12,8 +11,7 @@ FRAME_LOCATOR = "iframe[title*='streamlit_cytoscape']"
 
 def get_node_style(node_id, iframe):
     """Get the computed style of a node from Cytoscape.js."""
-    style = iframe.evaluate(
-        f"""() => {{
+    style = iframe.evaluate(f"""() => {{
         {ASSIGN_CY}
         const node = cy.getElementById("{node_id}");
         if (!node || node.length === 0) return null;
@@ -23,15 +21,13 @@ def get_node_style(node_id, iframe):
             'border-color': node.style('border-color'),
             'shape': node.style('shape'),
         }};
-    }}"""
-    )
+    }}""")
     return style
 
 
 def get_follows_edge_style(iframe):
     """Get the computed style of the first FOLLOWS edge."""
-    style = iframe.evaluate(
-        f"""() => {{
+    style = iframe.evaluate(f"""() => {{
         {ASSIGN_CY}
         const edges = cy.edges('[label="FOLLOWS"]');
         if (edges.length > 0) {{
@@ -42,8 +38,7 @@ def get_follows_edge_style(iframe):
             }};
         }}
         return null;
-    }}"""
-    )
+    }}""")
     return style
 
 

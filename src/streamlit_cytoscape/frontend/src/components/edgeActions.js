@@ -170,6 +170,32 @@ function collapseAllParallelEdges() {
 }
 
 /**
+ * Returns the group keys that are currently collapsed (have a live meta-edge).
+ */
+function getCollapsedGroupKeys() {
+    return Object.keys(collapsedGroups);
+}
+
+/**
+ * Re-collapse a specific set of parallel-edge groups after the graph has been
+ * rebuilt (e.g. an element/data update that replaced all elements). Stale
+ * module state is reset first, then only the groups whose keys are provided are
+ * collapsed again using the fresh edge data. Groups the user had expanded are
+ * not in `keys`, so they stay expanded.
+ */
+function reapplyCollapse(keys) {
+    collapsedGroups = {};
+    State.updateState("collapsedEdges", {});
+    if (!keys || keys.length === 0) return;
+    const parallelGroups = detectParallelEdges();
+    parallelGroups.forEach((edges, key) => {
+        if (keys.includes(key)) {
+            collapseEdgeGroup(key, edges);
+        }
+    });
+}
+
+/**
  * Initialize edge actions based on configuration
  */
 function initEdgeActions(edgeActions, collapseOnInit, priorityEdgeLabelConfig) {
@@ -197,5 +223,11 @@ function initEdgeActions(edgeActions, collapseOnInit, priorityEdgeLabelConfig) {
     }
 }
 
-export { collapseAllParallelEdges, expandEdgeGroup, detectParallelEdges };
+export {
+    collapseAllParallelEdges,
+    expandEdgeGroup,
+    detectParallelEdges,
+    getCollapsedGroupKeys,
+    reapplyCollapse,
+};
 export default initEdgeActions;

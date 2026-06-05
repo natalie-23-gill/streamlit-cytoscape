@@ -1,6 +1,5 @@
 from playwright.sync_api import Page, expect
 
-
 PAGE_NAME = "Infopanel"
 FRAME_LOCATOR = "iframe[title*='streamlit_cytoscape']"
 ASSIGN_CY = "const cy = document.getElementById('cy')._cyreg.cy;"
@@ -8,8 +7,7 @@ ASSIGN_CY = "const cy = document.getElementById('cy')._cyreg.cy;"
 
 def wait_for_node(_id, frame):
     """Wait for a node to exist in Cytoscape graph."""
-    frame.evaluate(
-        f"""() => {{
+    frame.evaluate(f"""() => {{
         {ASSIGN_CY}
         return new Promise((resolve) => {{
             const check = () => {{
@@ -22,8 +20,7 @@ def wait_for_node(_id, frame):
             }};
             check();
         }});
-    }}"""
-    )
+    }}""")
 
 
 def AWAIT_SELECT(frame):
@@ -34,12 +31,10 @@ def AWAIT_SELECT(frame):
 def select_node(frame):
     """Select node n1 to expand the infopanel."""
     wait_for_node("n1", frame)
-    frame.evaluate(
-        f"""() => {{
+    frame.evaluate(f"""() => {{
         {ASSIGN_CY}
         cy.getElementById("n1").select();
-    }}"""
-    )
+    }}""")
     AWAIT_SELECT(frame)
 
 
@@ -76,12 +71,10 @@ def test_resize_changes_panel_width(page: Page):
     select_node(frame)
 
     # Get initial panel width
-    initial_width = frame.evaluate(
-        """() => {
+    initial_width = frame.evaluate("""() => {
         const el = document.getElementById('infopanel');
         return el.getBoundingClientRect().width;
-    }"""
-    )
+    }""")
 
     # Get resize handle position
     handle = frame.locator("#infopanelResize")
@@ -96,12 +89,10 @@ def test_resize_changes_panel_width(page: Page):
     page.mouse.up()
 
     # Verify width increased
-    new_width = frame.evaluate(
-        """() => {
+    new_width = frame.evaluate("""() => {
         const el = document.getElementById('infopanel');
         return el.getBoundingClientRect().width;
-    }"""
-    )
+    }""")
     assert new_width > initial_width
 
 
@@ -117,12 +108,10 @@ def test_resize_nodeactions_follows(page: Page):
     select_node(frame)
 
     # Get initial panel width (more stable than style.left)
-    initial_width = frame.evaluate(
-        """() => {
+    initial_width = frame.evaluate("""() => {
         const el = document.getElementById('infopanel');
         return el.getBoundingClientRect().width;
-    }"""
-    )
+    }""")
 
     # Drag resize handle right
     handle = frame.locator("#infopanelResize")
@@ -137,15 +126,13 @@ def test_resize_nodeactions_follows(page: Page):
     page.wait_for_timeout(300)
 
     # Verify nodeActions left tracks the new panel width
-    result = frame.evaluate(
-        """() => {
+    result = frame.evaluate("""() => {
         const panel = document.getElementById('infopanel');
         const na = document.getElementById('nodeActions');
         return {
             panelWidth: panel.getBoundingClientRect().width,
             naLeft: parseFloat(na.style.left) || 0
         };
-    }"""
-    )
+    }""")
     assert result["panelWidth"] > initial_width
     assert result["naLeft"] > initial_width

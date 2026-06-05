@@ -1,6 +1,5 @@
 from playwright.sync_api import Page, expect
 
-
 PAGE_NAME = "Infopanel"
 FRAME_LOCATOR = "iframe[title*='streamlit_cytoscape']"
 ASSIGN_CY = "const cy = document.getElementById('cy')._cyreg.cy;"
@@ -8,8 +7,7 @@ ASSIGN_CY = "const cy = document.getElementById('cy')._cyreg.cy;"
 
 def wait_for_node(_id, frame):
     """Wait for a node to exist in Cytoscape graph."""
-    frame.evaluate(
-        f"""() => {{
+    frame.evaluate(f"""() => {{
         {ASSIGN_CY}
         return new Promise((resolve) => {{
             const check = () => {{
@@ -22,8 +20,7 @@ def wait_for_node(_id, frame):
             }};
             check();
         }});
-    }}"""
-    )
+    }}""")
 
 
 def AWAIT_SELECT(frame):
@@ -56,12 +53,10 @@ def test_hide_underscore_attrs_enabled(page: Page):
     # n1 (Alice) has _style_data and _hidden_attr added in-memory
     wait_for_node("n1", frame)
 
-    frame.evaluate(
-        f"""() => {{
+    frame.evaluate(f"""() => {{
         {ASSIGN_CY}
         cy.getElementById("n1").select();
-    }}"""
-    )
+    }}""")
 
     AWAIT_SELECT(frame)
 
@@ -89,12 +84,10 @@ def test_hide_underscore_attrs_disabled(page: Page):
 
     wait_for_node("n1", frame)
 
-    frame.evaluate(
-        f"""() => {{
+    frame.evaluate(f"""() => {{
         {ASSIGN_CY}
         cy.getElementById("n1").select();
-    }}"""
-    )
+    }}""")
 
     AWAIT_SELECT(frame)
 

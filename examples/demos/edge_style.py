@@ -18,13 +18,11 @@ CURVE_STYLES = [
 ]
 
 st.markdown("# Edge Styles")
-st.markdown(
-    """
+st.markdown("""
     A unique edge style can be applied to each group of edges (grouped by
     `label`
     data element). Here is an example of modifying `FOLLOWS` edges style
-    """
-)
+    """)
 
 c1, c2, c3, c4 = st.columns(4)
 label = "FOLLOWS"

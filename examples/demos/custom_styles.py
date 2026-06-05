@@ -6,8 +6,7 @@ with open("./data/social.json", "r") as f:
     elements = json.load(f)
 
 st.markdown("# Custom Styles")
-st.markdown(
-    """
+st.markdown("""
     The `custom_styles` parameter allows you to apply any valid Cytoscape.js
     style
     property to nodes and edges. This gives you fine-grained control over the
@@ -15,8 +14,7 @@ st.markdown(
 
     See the [Cytoscape.js style documentation](https://js.cytoscape.org/#style)
     for all available properties.
-    """
-)
+    """)
 
 st.markdown("## Node Custom Styles")
 

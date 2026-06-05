@@ -1,31 +1,35 @@
-[tool.poetry]
+[project]
 name = "streamlit-cytoscape"
-version = "0.2.0"
+version = "0.2.1"
 description = "A flexible, customizable, Streamlit component for interactive graph visualization using Cytoscape.js"
-authors = ["Natalie Gill"]
-license = "MIT"
+authors = [{ name = "Natalie Gill" }]
+license = { text = "MIT" }
 readme = "README.md"
-packages = [{include = "streamlit_cytoscape", from = "src"}]
-include = [
-    { path = "src/streamlit_cytoscape/frontend/build/**/*", format = ["sdist", "wheel"] }
+requires-python = ">=3.11"
+dependencies = ["streamlit>=0.63"]
+
+[dependency-groups]
+dev = [
+    "black>=26.0,<27.0",
+    "flake8>=7.0,<8.0",
+    "mypy>=2.0,<3.0",
+    "pytest>=9.0,<10.0",
+    "pytest-playwright>=0.8,<0.9",
+    "pytest-rerunfailures>=16.0,<17.0",
+    "networkx>=3.0",
 ]
-
-[tool.poetry.dependencies]
-python = "^3.11"
-streamlit = ">=0.63"
-
-[tool.poetry.group.dev.dependencies]
-black = "^24.0"
-flake8 = "^7.0"
-mypy = "^1.0"
-pytest = "^8.0"
-pytest-playwright = "^0.5"
-pytest-rerunfailures = "^14.0"
-networkx = ">=3.0"
 
 [tool.black]
 line-length = 79
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+# Force-include the bundled frontend build, which is gitignored but must
+# ship in the sdist and wheel.
+artifacts = ["src/streamlit_cytoscape/frontend/build/**/*"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/streamlit_cytoscape"]

@@ -44,17 +44,16 @@ Ready to contribute? Here's how to set up `streamlit_cytoscape` for local develo
 
 1. Download a copy of `streamlit_cytoscape` locally.
 
-2. Create and activate a conda environment for `streamlit_cytoscape`:
+2. Install `streamlit_cytoscape` and its dependencies with [uv](https://docs.astral.sh/uv/) (it creates and manages a virtual environment in `.venv/` automatically):
 
     ```console
-    $ conda create -n streamlit_cytoscape python=3.10
-    $ conda activate streamlit_cytoscape
+    $ uv sync
     ```
 
-3. Install `streamlit_cytoscape` using `poetry`:
+3. Run project commands inside the environment with `uv run`, for example:
 
     ```console
-    $ poetry install
+    $ uv run pytest
     ```
 
 4. Use `git` (or similar) to create a branch for local development and make your changes:

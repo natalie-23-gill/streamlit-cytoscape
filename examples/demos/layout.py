@@ -35,13 +35,11 @@ sample = {
 }
 
 st.markdown("# Layout Algorithms")
-st.markdown(
-    """
+st.markdown("""
     You can select from different layout options which determines how elements
     positions are calculated in the graph. Refer to
     [Cytoscape JS](https://js.cytoscape.org/#layouts) for full options.
-    """
-)
+    """)
 
 layout = st.selectbox("Layout Name", LAYOUT_NAMES, index=0)
 

@@ -32,6 +32,10 @@ infopanel_actions = st.Page(
     "./demos/infopanel_actions.py",
     title="Infopanel",
 )
+infopanel_links = st.Page(
+    "./demos/infopanel_links.py",
+    title="Links & Updates",
+)
 multi_tab = st.Page(
     "./demos/multi_tab.py",
     title="Multi-Tab",
@@ -51,6 +55,7 @@ pg = st.navigation(
         node_actions,
         edge_actions,
         infopanel_actions,
+        infopanel_links,
         multi_tab,
         networkx_compat,
     ]

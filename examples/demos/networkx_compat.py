@@ -3,13 +3,11 @@ import networkx as nx
 from streamlit_cytoscape import streamlit_cytoscape
 
 st.markdown("# NetworkX Integration")
-st.markdown(
-    """
+st.markdown("""
     Pass a NetworkX graph directly using `nx.cytoscape_data()`.
     Edge `source`/`target` types and missing edge `id` fields are
     automatically sanitized.
-    """
-)
+    """)
 
 graph_type = st.selectbox(
     "Graph type",

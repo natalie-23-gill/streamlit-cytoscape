@@ -9,13 +9,11 @@ with open("./data/social.json", "r") as f:
 PERSON_ATTRS = list(elements["nodes"][0]["data"].keys()) + [None]
 
 st.markdown("# Node Styles")
-st.markdown(
-    """
+st.markdown("""
     A unique node style can be applied to each group of nodes (grouped by
     `label`
     data element). Here is an example of modifying `PERSON` nodes styles
-    """
-)
+    """)
 
 left, middle, right = st.columns(3)
 label = "PERSON"
