@@ -10,8 +10,7 @@ import streamlit as st
 from streamlit_cytoscape import streamlit_cytoscape, NodeStyle
 
 st.markdown("# Multi-Tab Auto-Fit Test")
-st.markdown(
-    """
+st.markdown("""
     Multiple tabs with components get resized automatically to fit the graph
     when that tab is clicked.
 
@@ -19,8 +18,7 @@ st.markdown(
     1. Observe that the graph in Tab 1 fits correctly
     2. Click on Tab 2 - the graph should auto-fit when the tab becomes visible
     3. Switch back to Tab 1 - it should still display correctly
-    """
-)
+    """)
 
 # Sample elements for testing
 elements_tab1 = {

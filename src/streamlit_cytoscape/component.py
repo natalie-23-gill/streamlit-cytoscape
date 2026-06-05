@@ -8,7 +8,6 @@ from streamlit_cytoscape.events import Event
 from streamlit_cytoscape.infopanel import InfopanelAction
 from streamlit_cytoscape.sanitize import sanitize_elements
 
-
 _RELEASE = True
 
 if not _RELEASE:

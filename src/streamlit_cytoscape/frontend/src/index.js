@@ -6,8 +6,8 @@ import initCyto, { graph } from "./components/graph.js";
 import initToolbar from "./components/toolbar.js";
 import initViewbar from "./components/viewbar.js";
 import initNodeActions, { animateNeighbors } from "./components/nodeActions.js";
-import initEdgeActions from "./components/edgeActions.js";
-import updateInfopanel, { initInfopanel, initResize, initInfopanelActions } from "./components/infopanel.js";
+import initEdgeActions, { getCollapsedGroupKeys, reapplyCollapse } from "./components/edgeActions.js";
+import updateInfopanel, { initInfopanel, initResize, initInfopanelActions, clearInfopanelBusy } from "./components/infopanel.js";
 
 // Constants / Configurations
 const CONTAINER_ID = "container";
@@ -36,6 +36,8 @@ function onRender(event) {
 
     // Update infopanel config on every render
     initInfopanel(args["hideUnderscoreAttrs"]);
+    // Clear any action-button spinners from the previous interaction
+    clearInfopanelBusy();
 
     // Initialize once
     if (!cy) {
@@ -71,9 +73,29 @@ function onRender(event) {
         elements = newElements;
         const lastExpanded = State.getState("lastExpanded");
         if (lastExpanded === false) {
+            // Snapshot collapse state + node positions before the full replace
+            // so a node/edge data update (e.g. a background AI summary landing)
+            // doesn't re-expand collapsed parallel edges or scramble positions.
+            const collapsedKeys = getCollapsedGroupKeys();
+            const savedPositions = {};
+            cy.nodes().forEach((n) => {
+                savedPositions[n.id()] = { ...n.position() };
+            });
+            const explicitPos = new Set(
+                (args["elements"]["nodes"] || [])
+                    .filter((n) => n.position)
+                    .map((n) => n.data.id)
+            );
             // Save selection before replacing elements
             const selectedIds = cy.$(":selected").map(el => el.id());
             cy.json({ elements: args["elements"] });
+            // Restore positions we didn't receive fresh from Python
+            cy.nodes().forEach((n) => {
+                const p = savedPositions[n.id()];
+                if (p && !explicitPos.has(n.id())) n.position(p);
+            });
+            // Re-collapse the groups that were collapsed before the update
+            reapplyCollapse(collapsedKeys);
             // Re-select so infopanel stays open with fresh data
             if (selectedIds.length > 0) {
                 selectedIds.forEach(id => {

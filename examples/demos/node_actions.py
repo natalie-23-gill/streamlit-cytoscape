@@ -6,8 +6,7 @@ from streamlit_cytoscape.layouts import LAYOUTS
 LAYOUT_NAMES = list(LAYOUTS.keys())
 
 st.markdown("# Expand / Remove Nodes")
-st.markdown(
-    """
+st.markdown("""
     The `node_actions` parameter allows for interactive expansion and
     removal of nodes in the graph. When used, the triggered events are
     sent back to the Streamlit app along with the selected node IDs,
@@ -22,8 +21,7 @@ st.markdown(
     the necessary updates to the elements.
 
     #### Example use with a callback
-    """
-)
+    """)
 
 st.code(
     """

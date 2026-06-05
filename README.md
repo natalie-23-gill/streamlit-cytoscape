@@ -229,17 +229,14 @@ If you want `NodeStyle`/`EdgeStyle` selectors to match, add a `label` field to y
 
 ## Development
 
-Ensure you have Python 3.11+, Node.js, and npm installed.
+Ensure you have Python 3.11+, [uv](https://docs.astral.sh/uv/), Node.js, and npm installed.
 
 ### Setup
 
 ```bash
-# Create conda environment
-conda create -n streamlit_cytoscape python=3.11
-conda activate streamlit_cytoscape
-
-# Install Python package
-poetry install
+# Install the Python package and dev dependencies
+# (uv creates and manages a virtual environment in .venv/)
+uv sync
 
 # Install frontend dependencies
 cd src/streamlit_cytoscape/frontend
@@ -261,16 +258,16 @@ In another terminal run the streamlit server:
 
 ```bash
 cd examples
-poetry run streamlit run app.py
+uv run streamlit run app.py
 ```
 
 ### Testing
 
 ```bash
-poetry run black .
-poetry run flake8 src/streamlit_cytoscape tests examples
-poetry run mypy src/streamlit_cytoscape
-poetry run pytest
+uv run black .
+uv run flake8 src/streamlit_cytoscape tests examples
+uv run mypy src/streamlit_cytoscape
+uv run pytest
 ```
 
 ## Contributing

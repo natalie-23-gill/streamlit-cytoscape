@@ -2,7 +2,6 @@ from playwright.sync_api import Page, expect
 import json
 import re
 
-
 PAGE_NAME = "Expand & Remove"
 NODE_ID = "c"
 ASSIGN_CY = "const cy = document.getElementById('cy')._cyreg.cy;"
@@ -19,12 +18,10 @@ def AWAIT_SELECT(frame):
 
 
 def get_node_pos(_id, iframe):
-    pos = iframe.evaluate(
-        f"""() => {{
+    pos = iframe.evaluate(f"""() => {{
         {ASSIGN_CY}
         return cy.getElementById("{_id}").renderedPosition();
-    }}"""
-    )
+    }}""")
     return pos
 
 

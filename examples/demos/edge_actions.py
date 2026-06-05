@@ -5,8 +5,7 @@ from streamlit_cytoscape.layouts import LAYOUTS
 LAYOUT_NAMES = list(LAYOUTS.keys())
 
 st.markdown("# Collapse / Expand Parallel Edges")
-st.markdown(
-    """
+st.markdown("""
     The `edge_actions` parameter enables collapsing and expanding of parallel
     edges (multiple edges between the same source and target nodes). When
     parallel edges are collapsed, they appear as a single "meta-edge" showing:
@@ -20,8 +19,7 @@ st.markdown(
     - **Priority label**: Configure which edge label takes precedence
 
     #### Example use with a callback
-    """
-)
+    """)
 
 st.code(
     """
@@ -44,14 +42,12 @@ st.code(
     language="python",
 )
 
-st.info(
-    """
+st.info("""
     **Notes**
     - Collapsed edges are managed entirely in the frontend
     - Expanding sends an event to Python and restores edges in frontend
     - The meta-edge uses dashed styling to distinguish from regular edges
-    """
-)
+    """)
 
 
 def create_multi_edge_graph():
@@ -230,13 +226,11 @@ with st.container(border=True):
 
 
 st.markdown("### Graph Data")
-st.markdown(
-    """
+st.markdown("""
     This demo uses a social network with multiple relationship types.
     Notice how Alice -> Bob has 3 edges (FOLLOWS, LIKES, WORKS_WITH)
     which collapse into a single meta-edge.
-    """
-)
+    """)
 
 with st.expander("View Graph Data", expanded=False):
     st.json(elements)

@@ -2,7 +2,6 @@ from playwright.sync_api import Page
 import json
 import re
 
-
 PAGE_NAME = "Parallel Edges"
 ASSIGN_CY = "const cy = document.getElementById('cy')._cyreg.cy;"
 FRAME_LOCATOR = "iframe[title*='streamlit_cytoscape']"
@@ -14,30 +13,25 @@ def AWAIT_RETURN_ACTION(page):
 
 def get_edge_count(iframe):
     """Get the count of visible edges"""
-    count = iframe.evaluate(
-        f"""() => {{
+    count = iframe.evaluate(f"""() => {{
         {ASSIGN_CY}
         return cy.edges().length;
-    }}"""
-    )
+    }}""")
     return count
 
 
 def get_meta_edge_count(iframe):
     """Get the count of meta-edges"""
-    count = iframe.evaluate(
-        f"""() => {{
+    count = iframe.evaluate(f"""() => {{
         {ASSIGN_CY}
         return cy.edges('[_isMetaEdge]').length;
-    }}"""
-    )
+    }}""")
     return count
 
 
 def get_meta_edge_pos(iframe):
     """Get the position of the first meta-edge"""
-    pos = iframe.evaluate(
-        f"""() => {{
+    pos = iframe.evaluate(f"""() => {{
         {ASSIGN_CY}
         const metaEdge = cy.edges('[_isMetaEdge]').first();
         if (!metaEdge || metaEdge.length === 0) return null;
@@ -47,20 +41,17 @@ def get_meta_edge_pos(iframe):
             x: (sourcePos.x + targetPos.x) / 2,
             y: (sourcePos.y + targetPos.y) / 2
         }};
-    }}"""
-    )
+    }}""")
     return pos
 
 
 def get_meta_edge_label(iframe):
     """Get the label of the first meta-edge"""
-    label = iframe.evaluate(
-        f"""() => {{
+    label = iframe.evaluate(f"""() => {{
         {ASSIGN_CY}
         const metaEdge = cy.edges('[_isMetaEdge]').first();
         return metaEdge ? metaEdge.data('_metaLabel') : null;
-    }}"""
-    )
+    }}""")
     return label
 
 
@@ -207,15 +198,13 @@ def test_meta_edge_label_includes_count(page: Page):
     page.wait_for_timeout(500)
 
     # Get all meta-edge labels
-    labels = frame.evaluate(
-        f"""() => {{
+    labels = frame.evaluate(f"""() => {{
         {ASSIGN_CY}
         return cy.edges('[_isMetaEdge]').map(e => ({{
             label: e.data('_metaLabel'),
             count: e.data('_edgeCount')
         }}));
-    }}"""
-    )
+    }}""")
 
     assert len(labels) > 0, "Expected at least one meta-edge"
 
@@ -241,8 +230,7 @@ def test_meta_edge_rendered_label_matches_meta_label(page: Page):
 
     # Check that the rendered label matches _metaLabel (with count)
     # not just the label field (without count)
-    result = frame.evaluate(
-        f"""() => {{
+    result = frame.evaluate(f"""() => {{
         {ASSIGN_CY}
         const metaEdge = cy.edges('[_isMetaEdge]').first();
         if (!metaEdge || metaEdge.length === 0) return null;
@@ -251,8 +239,7 @@ def test_meta_edge_rendered_label_matches_meta_label(page: Page):
             metaLabel: metaEdge.data('_metaLabel'),
             labelField: metaEdge.data('label')
         }};
-    }}"""
-    )
+    }}""")
 
     assert result is not None, "No meta-edge found"
     # The rendered label should match _metaLabel (which includes count)

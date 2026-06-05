@@ -32,6 +32,47 @@ function _updateLabel(color, label, icon) {
     }
 }
 
+// Only http(s) links are allowed; everything else renders as inert text.
+const ALLOWED_SCHEME = /^https?:\/\//i;
+// Matches <a ... href="URL" ...>TEXT</a> with single- or double-quoted href.
+const ANCHOR_RE =
+    /<a\b[^>]*\bhref\s*=\s*("([^"]*)"|'([^']*)')[^>]*>([\s\S]*?)<\/a>/gi;
+
+// Safely render a value that may contain <a href> links. We never use
+// innerHTML: surrounding text becomes text nodes and each anchor is rebuilt
+// via the DOM API, copying only a scheme-checked href (no onclick/onerror,
+// no other tags), so no arbitrary HTML/script can execute.
+function _appendLinkified(parent, value) {
+    const text = String(value);
+    let lastIndex = 0;
+    let m;
+    ANCHOR_RE.lastIndex = 0;
+    while ((m = ANCHOR_RE.exec(text)) !== null) {
+        if (m.index > lastIndex) {
+            parent.appendChild(
+                document.createTextNode(text.slice(lastIndex, m.index))
+            );
+        }
+        const href = m[2] !== undefined ? m[2] : m[3];
+        const linkText = m[4].replace(/<[^>]*>/g, ""); // strip nested tags
+        if (ALLOWED_SCHEME.test(href)) {
+            const a = document.createElement("a");
+            a.href = href;
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
+            a.textContent = linkText;
+            parent.appendChild(a);
+        } else {
+            // Disallowed scheme (javascript:, data:, ...): show text, no link.
+            parent.appendChild(document.createTextNode(linkText));
+        }
+        lastIndex = ANCHOR_RE.lastIndex;
+    }
+    if (lastIndex < text.length) {
+        parent.appendChild(document.createTextNode(text.slice(lastIndex)));
+    }
+}
+
 function _updateProps(data) {
     const props = document.getElementById(PROPS_ID);
     props.innerHTML = "";
@@ -49,7 +90,7 @@ function _updateProps(data) {
             keyP.textContent = key;
             const valP = document.createElement("p");
             valP.className = "infopanel__val";
-            valP.textContent = String(value);
+            _appendLinkified(valP, value);
             div.appendChild(keyP);
             div.appendChild(valP);
             props.appendChild(div);
@@ -119,6 +160,11 @@ function initInfopanelActions(actions) {
             const { selected: eles } = State.getState("selection");
             if (!eles || eles.length === 0) return;
             const ele = eles.first();
+            // Instant feedback for long-running/async actions; cleared on the
+            // next render (see clearInfopanelBusy in onRender).
+            if (action.spinner) {
+                btn.classList.add("infopanel__action-btn--busy");
+            }
             debouncedSetValue({
                 action: action.name,
                 data: {
@@ -132,6 +178,14 @@ function initInfopanelActions(actions) {
 
         actionsContainer.appendChild(btn);
     });
+}
+
+// Clear any in-flight busy spinners on action buttons. Called at the start of
+// each render so the spinner lasts from click until the rerun completes.
+function clearInfopanelBusy() {
+    document
+        .querySelectorAll(".infopanel__action-btn--busy")
+        .forEach((b) => b.classList.remove("infopanel__action-btn--busy"));
 }
 
 // infopanel update
@@ -172,5 +226,10 @@ function updateInfopanel() {
     _updateProps(data);
 }
 
-export { initInfopanel, initResize, initInfopanelActions };
+export {
+    initInfopanel,
+    initResize,
+    initInfopanelActions,
+    clearInfopanelBusy,
+};
 export default updateInfopanel;

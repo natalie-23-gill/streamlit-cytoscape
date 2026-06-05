@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.2.1 (05/06/2026)
+
+### Bug Fixes
+- Infopanel once again renders `<a href="...">` values as clickable links. Anchors are rebuilt via the DOM API (http/https only, `target="_blank"`, `rel="noopener noreferrer"`); all other tags/attributes are dropped, so the XSS hardening introduced in 0.2.0 stays in place
+- Updating element data (e.g. changing a single node's attributes) no longer re-expands collapsed parallel edges or resets node positions; the collapse state and layout are preserved across element updates
+
+### Features
+- Non-blocking infopanel actions: `InfopanelAction` accepts `spinner=True` to show an instant busy indicator on click, intended for long-running or asynchronous actions. The Infopanel demo now runs its "AI Summary" action in a background thread (`ThreadPoolExecutor` + `st.fragment` polling) so the app stays interactive while the work runs
+- New `Infopanel Links` demo page covering clickable links, safe handling of HTML/script payloads, and collapse-preserving data updates
+
+### Maintenance
+- Updated dependencies and resolved npm audit advisories (cytoscape 3.34; black 26, mypy 2, pytest 9, pytest-playwright 0.8, pytest-rerunfailures 16)
+
 ## v0.2.0 (29/04/2026)
 
 ### Breaking Changes
